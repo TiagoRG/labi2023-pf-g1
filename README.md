@@ -16,6 +16,6 @@
   - Email: [rlcg@ua.pt](mailto:rlcg@ua.pt)
 
 ### Organização do repositório
-- [/.run](https://github.com/detiuaveiro/projeto-final-labi2023g1/tree/main/.run)&emsp;&bullet;&emsp;Configurações de compilação do relatório
+- [/.run](https://github.com/detiuaveiro/projeto-final-labi2023g1/tree/main/.run)&emsp;&bullet;&emsp;Configurações de compilação do projeto
 - [/project](https://github.com/detiuaveiro/projeto-final-labi2023g1/tree/main/project)&emsp;&bullet;&emsp;Código fonte do website
 - [/report](https://github.com/detiuaveiro/projeto-final-labi2023g1/tree/main/report)&emsp;&bullet;&emsp;Código fonte do relatório

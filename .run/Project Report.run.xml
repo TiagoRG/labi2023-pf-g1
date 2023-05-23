@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Project Report" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile">
+    <makefile filename="$PROJECT_DIR$/report/src/Makefile" target="" workingDirectory="" arguments="all clean">
+      <envs />
+    </makefile>
+    <method v="2" />
+  </configuration>
+</component>
