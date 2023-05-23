@@ -7,10 +7,11 @@ documento.pdf: ../report/documento.tex bibliografia.bib
 	biber documento
 	pdflatex documento.tex
 	pdflatex documento.tex
+	mv documento.pdf ../
 
 clean:
 	rm -f *.aux *.blg *.bbl *.toc *.log *.lof *.lot *.log.xml *.bcf *.out *.run.xml
 
 cleanall: clean
-	rm -f documento.pdf
+	rm -f documento.pdf ../documento.pdf
 
