@@ -4,15 +4,16 @@ body {
 
 .sidebar {
     height: 100%;
-    width: 250px; /* Defina a largura da sidebar conforme desejado */
+    width: 0; /* Defina a largura inicial da sidebar como 0 */
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background: linear-gradient(to right, #ff105f, #ffad06); /* Altere a cor de fundo da sidebar conforme desejado */
+    background: linear-gradient(to bottom, #ff105f, #ffad06);
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 60px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar-footer {
@@ -26,7 +27,7 @@ body {
 .sidebar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: white;
     display: block;
     transition: 0.3s;
@@ -35,6 +36,7 @@ body {
 
 .sidebar a:hover {
     background-color: rgba(255, 255, 255, 0.3);
+    color: black;
 }
 
 .sidebar .closebtn {
@@ -58,8 +60,8 @@ body {
     padding: 10px;
     margin: 10px;
     border-radius: 5px;
-    background: linear-gradient(to right, #ff105f, #ffad06); /* Defina a cor de fundo do botão conforme desejado */
-    width: 100%; /* Ocupar a largura total da sidebar */
+    background: linear-gradient(to right, #ff105f, #ffad06);
+    width: 100%;
     border: none;
 }
 
@@ -96,19 +98,49 @@ body {
 #main {
     transition: margin-left .5s;
     padding: 16px;
-    margin-left: 250px; /* Ajuste a margem esquerda do elemento "main" conforme a largura da sidebar */
 }
 
-/* Início do CSS para a seção de destaques de imagens */
-.highlight-images {
+#mainFooter {
+    transition: margin-left .5s;
+    background-color: #f8f9fa;
+    width: 100%;
+    bottom: 0;
+    clear: both;
+}
+
+.card-deck {
     display: flex;
-    justify-content: space-around; /* Isso distribuirá as imagens igualmente no espaço disponível */
-    flex-wrap: wrap; /* Isso permite que as imagens sejam quebradas em várias linhas, se necessário */
-    padding: 20px; /* Isso adiciona um pouco de preenchimento ao redor das imagens */
+    flex-flow: row wrap;
+    justify-content: space-around;
 }
 
-.highlight-images img {
-    border-radius: 15px; /* Isso dá às imagens um cantos arredondados */
-    margin: 10px; /* Isso adiciona um pouco de espaço ao redor de cada imagem */
+.card {
+    width: 300px; /* Largura do card */
+    height: 400px; /* Altura do card */
+    flex: 0 0 auto; /* Isso impede que o card seja flexível */
+    margin: 1rem;
 }
-/* Fim do CSS para a seção de destaques de imagens */
+
+.carousel-item {
+    height: 65vh;
+    min-height: 300px;
+    background: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.carousel-item img {
+    object-fit: contain; /* Garante que a imagem inteira seja visível */
+    width: 100%;
+    height: 100%;
+}
+
+.card-deck {
+    margin-top: 100px;
+}
+
+.carousel {
+    margin-top: 100px;
+}
