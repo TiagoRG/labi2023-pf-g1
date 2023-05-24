@@ -22,7 +22,7 @@ config = {
 
 class Root(object):
     @cherrypy.expose
-    def intro(self):
+    def index(self):
         return open("html/intro.html")
 
     @cherrypy.expose
