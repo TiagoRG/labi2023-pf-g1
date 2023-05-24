@@ -23,7 +23,7 @@ config = {
 class Root(object):
     @cherrypy.expose
     def index(self):
-        return open("html/intro.html")
+        return open("html/index.html")
 
     @cherrypy.expose
     def upload(self, myFile, author):
