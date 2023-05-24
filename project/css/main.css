@@ -4,28 +4,37 @@ body {
 
 .sidebar {
     height: 100%;
-    width: 0;
+    width: 250px; /* Defina a largura da sidebar conforme desejado */
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #111;
+    background: linear-gradient(to right, #ff105f, #ffad06); /* Altere a cor de fundo da sidebar conforme desejado */
     overflow-x: hidden;
-    transition: 0.5s;
+    transition: 0.3s;
     padding-top: 60px;
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    left: -10px;
+    width: 100%;
+    padding: 0;
 }
 
 .sidebar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: white;
     display: block;
     transition: 0.3s;
+    border-bottom: 1px solid white;
 }
 
 .sidebar a:hover {
-    color: #f1f1f1;
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 .sidebar .closebtn {
@@ -36,20 +45,70 @@ body {
     margin-left: 50px;
 }
 
+.sidebar a:not(.closebtn) {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.sidebar .btn.btn-primary {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    background: linear-gradient(to right, #ff105f, #ffad06); /* Defina a cor de fundo do botão conforme desejado */
+    width: 100%; /* Ocupar a largura total da sidebar */
+    border: none;
+}
+
+.sidebar .btn.btn-primary img {
+    margin-right: 10px;
+    margin-left: 10px;
+    border: 1.5px solid white;
+}
+
 .openbtn {
     font-size: 20px;
     cursor: pointer;
-    background-color: #111;
+    background: linear-gradient(to right, #ff105f, #ffad06);
     color: white;
-    padding: 10px 15px;
+    padding: 10px 10px;
     border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .openbtn:hover {
     background-color: #444;
 }
 
+.openbtn .bar {
+    width: 25px;
+    height: 4px;
+    background-color: white;
+    margin: 2px 0;
+}
+
 #main {
     transition: margin-left .5s;
     padding: 16px;
+    margin-left: 250px; /* Ajuste a margem esquerda do elemento "main" conforme a largura da sidebar */
 }
+
+/* Início do CSS para a seção de destaques de imagens */
+.highlight-images {
+    display: flex;
+    justify-content: space-around; /* Isso distribuirá as imagens igualmente no espaço disponível */
+    flex-wrap: wrap; /* Isso permite que as imagens sejam quebradas em várias linhas, se necessário */
+    padding: 20px; /* Isso adiciona um pouco de preenchimento ao redor das imagens */
+}
+
+.highlight-images img {
+    border-radius: 15px; /* Isso dá às imagens um cantos arredondados */
+    margin: 10px; /* Isso adiciona um pouco de espaço ao redor de cada imagem */
+}
+/* Fim do CSS para a seção de destaques de imagens */
