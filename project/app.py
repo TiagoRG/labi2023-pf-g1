@@ -25,6 +25,9 @@ class Root(object):
     def index(self):
         return open("html/index.html")
 
+    def intro(self):
+        return open("html/intro.html")
+
     @cherrypy.expose
     def upload(self, myFile, author):
         db = sql.connect('database.db')
