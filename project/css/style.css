@@ -245,7 +245,7 @@ body{
   width: 78px;
   background: #11101d;
   padding: 6px 14px;
-  transition: all 0.5s ease;
+  transition: all 0.35s ease;
 }
 
 .sidebar.active{
@@ -260,7 +260,7 @@ body{
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.5s ease;
+  transition: all 0.35s ease;
 }
 
 .sidebar.active .logo_content .logo{
@@ -331,7 +331,7 @@ body{
 }
 
 .sidebar ul li:hover .tooltip{
-  transition: all 0.5s ease;
+  transition: all 0.35s ease;
   opacity: 1;
   top: 50%;
 }
@@ -356,7 +356,7 @@ body{
   z-index: 99;
   color: #fff;
   font-size: 22px;
-  transition: all 0.5s ease;
+  transition: all 0.35s ease;
 }
 
 .sidebar ul li .bx-search:hover{
@@ -390,7 +390,7 @@ body{
 .sidebar .links_name{
   opacity: 0;
   pointer-events: none;
-  transition: all 0.5s ease;
+  transition: all 0.35s ease;
 }
 
 .sidebar.active .links_name{
@@ -477,7 +477,7 @@ body{
   height: 100%;
   width: calc(100% - 78px);
   left: 78px;
-  transition: all 0.5s ease;
+  transition: all 0.35s ease;
 }
 
 .home_content .text{
@@ -495,12 +495,13 @@ body{
 
 .footer_content{
   position: absolute;
-  background-color: rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.75);
   height: 60px;
+  padding-top: 8px;
   width: calc(100% - 78px);
   bottom: 0;
   left: 78px;
-  transition: all 0.5s ease;
+  transition: all 0.35s ease;
 }
 
 .footer_content .footer{

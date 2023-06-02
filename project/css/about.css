@@ -1,0 +1,94 @@
+body {
+    padding: 20px;
+}
+
+a {
+    color: #5e5b91;
+}
+
+hr {
+    width: 75%;
+    margin: 20px auto;
+    border: 1px solid #11101d;
+}
+
+.about-container {
+    top: 0;
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 100vh;
+    overflow-y: scroll;
+    position: relative;
+    padding-bottom: 100px;
+}
+
+.page-title-section button {
+    padding: 10px;
+    border: 1px solid #11101d;
+    border-radius: 5px;
+    background-color: #1d1b31;
+    color: white;
+    cursor: pointer;
+}
+
+.page-title-section button:hover {
+    background-color: #11101d;
+    scale: 105%;
+    transition: 0.1s;
+}
+
+.students-outer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 87.5%;
+    align-self: center;
+    padding-left: 12.5%;
+}
+
+.students-outer-grid a {
+    text-decoration: none;
+    color: #c6c2e8;
+}
+
+.students-inner-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 5px;
+    padding: 10px;
+    border: 1px solid #11101d;
+    border-radius: 5px;
+    background-color: #1d1b31;
+    color: white;
+    width: 100%;
+    height: 100%;
+    align-self: center;
+    text-anchor: middle;
+    cursor: pointer;
+}
+
+.students-inner-grid:hover {
+    background-color: #11101d;
+    transition: 0.3s;
+    scale: 102%;
+}
+
+.students-inner-grid img {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.students-outer-grid .students-inner-grid p {
+    top: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}

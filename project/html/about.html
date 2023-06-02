@@ -2,9 +2,185 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>About</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/about.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
 </head>
 <body>
+    <div class="sidebar">
+        <div class="logo_content">
+            <div class="logo">
+                <i class='bx bxl-html5'></i>
+                <div class="logo_name">Dashboard</div>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav_list">
+            <li>
+                <i class='bx bx-search' ></i>
+                <label>
+                    <input type="text" placeholder="Search...">
+                </label>
+                <span class="tooltip">Search</span>
+            </li>
+            <li>
+                <a href="perfil.html">
+                    <i class='bx bx-user' ></i>
+                    <span class="links_name">User</span>
+                </a>
+                <span class="tooltip">User</span>
+            </li>
+            <li>
+                <a href="upload.html">
+                    <i class='bx bx-upload'></i>
+                    <span class="links_name">Upload Photo</span>
+                </a>
+                <span class="tooltip">Upload Photo</span>
+            </li>
+            <li>
+                <a href="gallery.html">
+                    <i class='bx bx-photo-album' ></i>
+                    <span class="links_name">Gallery</span>
+                </a>
+                <span class="tooltip">Gallery</span>
+            </li>
+            <li>
+                <a href="main.html">
+                    <i class='bx bx-chart' ></i>
+                    <span class="links_name">Highlights</span>
+                </a>
+                <span class="tooltip">Highlights</span>
+            </li>
+            <li>
+                <a href="main.html">
+                    <i class='bx bx-heart' ></i>
+                    <span class="links_name">Favorites</span>
+                </a>
+                <span class="tooltip">Favorites</span>
+            </li>
+            <li>
+                <a href="perfil.html">
+                    <i class='bx bx-cog' ></i>
+                    <span class="links_name">Settings</span>
+                </a>
+                <span class="tooltip">Settings</span>
+            </li>
+        </ul>
+        <div class="profile_content">
+            <div class="profile">
+                <div class="profile_details">
+                    <img src="../images/Adrego.jpg" alt="">
+                    <div class="name_job">
+                        <div class="name">Adrego Rocha</div>
+                        <div class="job">Professor</div>
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out"></i>
+            </div>
+        </div>
+    </div>
+    <div class="home_content">
+        <div class="about-container">
+            <div class="page-title-section">
+                <div class="page-title-spacer"></div>
+                <div class="page-title">
+                    <h1 style="scale: 200%">LABI - Projeto Final</h1>
+                    <h2 style="padding-top: 40px; padding-bottom: 25px">Repositório: <a href="https://github.com/detiuaveiro/projeto-final-labi2023g1">projeto-final-labi2023g1</a></h2>
+                    <button onclick="goToSection('#description')" style="cursor: pointer">Descrição</button>
+                    <button onclick="goToSection('#group')" style="cursor: pointer">Grupo</button>
+                    <button onclick="goToSection('#bibliography')" style="cursor: pointer">Bibliografia</button>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function(){
+                    $(".page-title-section").height($(window).height());
+                    $(".page-title-spacer").height(($(window).height()-$(".page-title").height())/2);
+                });
 
+                function goToSection(id) {
+                    $('.about-container').animate({
+                        scrollTop: $(id).offset().top - 25
+                    }, 500);
+                }
+            </script>
+            <h2 id="description">Descrição do Projeto</h2>
+            <p>
+                Paragraph 1
+            </p>
+            <p>
+                Paragraph 2
+            </p>
+            <p>
+                Paragraph 3
+            </p>
+            <p>
+                Paragraph 4
+            </p>
+            <p>
+                Paragraph 5
+            </p>
+            <hr>
+            <h2 id="group">Grupo 1</h2>
+            <div class="students-outer-grid">
+                <div class="students-inner-grid">
+                    <img src="../images/Adrego.jpg" alt="Adrego">
+                    <p>Bruno Pereira<br>
+                    NMec: 112726<br>
+                    Email: <a href="mailto:brunoborlido@ua.pt">brunoborlido@ua.pt</a><br>
+                    Github: <a href="https://github.com/brunombp">brunombp</a></p>
+                </div>
+                <div class="students-inner-grid">
+                    <img src="../images/f3309a42-2e69-408f-9cd5-a56fffee21e0.png" alt="Adrego">
+                    <p>Tiago Ferreira<br>
+                    NMec: 112787<br>
+                    Email: <a href="mailto:taof@ua.pt">taof@ua.pt</a><br>
+                    Github: <a href="https://github.com/tiagof-pk">tiagof-pk</a></p>
+                </div>
+                <div class="students-inner-grid">
+                    <img height="512" src="../images/ThumbsDown.jpg" alt="Adrego">
+                    <p>Tiago Garcia<br>
+                    NMec: 114184<br>
+                    Email: <a href="mailto:tiago.rgarcia@ua.pt">tiago.rgarcia@ua.pt</a><br>
+                    Github: <a href="https://github.com/TiagoRG">TiagoRG</a></p>
+                </div>
+                <div class="students-inner-grid">
+                    <img src="../images/Adrego.jpg" alt="Adrego">
+                    <p>Rúben Gomes<br>
+                    NMec: 113435<br>
+                    Email: <a href="mailto:rlcg@ua.pt">rlcg@ua.pt</a><br>
+                    Github: <a href="https://github.com/RubenCGomes">RubenCGomes</a></p>
+                </div>
+            </div>
+            <hr>
+            <h2 id="bibliography">Bibliografia</h2>
+            <p>
+                <a href="">Reference 1</a><br>
+                <a href="">Reference 2</a><br>
+                <a href="">Reference 3</a><br>
+                <a href="">Reference 4</a><br>
+                <a href="">Reference 5</a><br>
+            </p>
+            <a href="https://www.ua.pt/"><img src="../images/uacolored.png" alt="UA" style="margin-top: 50px" width="150" height="150"></a>
+        </div>
+    </div>
+    <footer class="footer_content">
+        <div class="footer">
+            <p>&copy; 2023 Your Website. Todos os direitos reservados.</p>
+            <ul class="list-inline">
+                <li style="display: inline-block"><a href="#">Privacy</a> | </li>
+                <li style="display: inline-block"><a href="#">Terms</a> | </li>
+                <li style="display: inline-block"><a href="#">Support</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
 </body>
 </html>
