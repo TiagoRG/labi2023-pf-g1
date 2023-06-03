@@ -19,8 +19,8 @@
                 <div class="login-regist">
                     <form class="input-group" id="login">
                     <input type="text" class="input-field" placeholder="User Name \ Email" required>
-                    <input type="text" class="input-field" placeholder="Enter Password" required><br>
-                        <a href="#popup1">Forgot Password</a>
+                    <input type="password" class="input-field" placeholder="Enter Password" required><br>
+                        <a href="#" onclick="showPopup()" id="popup">Forgot Password</a>
                     <button type="submit" class="submit-btn">Log in</button>
                     </form>
                 </div>
@@ -42,7 +42,7 @@
     <div id="popup1" class="overlay">
         <div class="popup">
             <h2>Forgot Password</h2>
-            <a class="close" href="#">&times;</a>
+            <a class="close" onclick="hidePopup()" href="#">&times;</a>
             <div class="content">
                 <form action="">
                     <input type="email" class="input-field" placeholder="User Name \ Email" required>
