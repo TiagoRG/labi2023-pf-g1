@@ -1,5 +1,13 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    padding: 20px;
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
 }
 
 a {
@@ -12,29 +20,71 @@ hr {
     border: 1px solid #11101d;
 }
 
+.page-title-section h1 {
+    font-weight: 600;
+    color: #11101d;
+    margin-bottom: 20px;
+    scale: 250%;
+}
+
+h2 {
+    font-weight: 400;
+    color: #11101d;
+    margin-bottom: 20px;
+    scale: 150%;
+}
+
 .about-container {
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left: 78px;
+    transition: all 0.35s ease;
     top: 0;
-    display: block;
     flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: center;
-    height: 100vh;
     overflow-y: scroll;
-    position: relative;
+    overflow-x: hidden;
     padding-bottom: 100px;
+    scroll-behavior: smooth;
+}
+
+.sidebar.active {
+    width: 240px;
+}
+
+.sidebar.active ~ .about-container{
+    width: calc(100% - 240px);
+    left: 240px;
+}
+
+.page-title-section {
+    background-image: url("../images/image7.jpg");
+    background-size: cover;
 }
 
 .page-title-section button {
+    scale: 125%;
+    margin: 15px
+}
+
+.page-title-section button:hover {
+    scale: 135%;
+    transition: 0.1s;
+}
+
+button {
     padding: 10px;
     border: 1px solid #11101d;
     border-radius: 5px;
-    background-color: #1d1b31;
+    background-color: rgba(29, 27, 49, 0.75);
     color: white;
     cursor: pointer;
 }
 
-.page-title-section button:hover {
+button:hover {
     background-color: #11101d;
     scale: 105%;
     transition: 0.1s;
@@ -61,15 +111,14 @@ hr {
     grid-template-columns: 1fr;
     grid-gap: 5px;
     padding: 10px;
-    border: 1px solid #11101d;
     border-radius: 5px;
-    background-color: #1d1b31;
+    background-color: rgba(29, 27, 49, 0.66);
     color: white;
     width: 100%;
     height: 100%;
+    max-height: 80%;
     align-self: center;
     text-anchor: middle;
-    cursor: pointer;
 }
 
 .students-inner-grid:hover {
@@ -91,4 +140,78 @@ hr {
     margin: 0;
     padding: 0;
     text-align: center;
+}
+
+#popups {
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#project-description, #project-roadmap {
+    display: none;
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    top: 12.5%;
+    left: 20%;
+    background-color: rgba(29, 27, 49, 0.9);
+    border: white 1px solid;
+    border-radius: 10px;
+    color: white;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    transition: all 0.35s ease;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#popups h1 {
+    font-weight: 500;
+    scale: 200%;
+    margin: 75px;
+}
+
+#popups p {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+#popup-close-button {
+    position: fixed;
+    align-self: center;
+    align-items: center;
+    justify-items: center;
+    border: white 1px solid;
+    width: 60%;
+    left: 20%;
+    bottom: 20%;
+    height: 55px;
+}
+
+.switch-popup {
+    position: fixed;
+    align-self: center;
+    align-items: center;
+    justify-items: center;
+    border: white 1px solid;
+    top: 12.5%;
+    height: 60%;
+    width: 55px;
+}
+
+#switch-description-prev {
+    left : 16.5%
+}
+
+#switch-description-next {
+    right : 16.5%
+}
+
+.footer a {
+    color: #5f5b91;
 }

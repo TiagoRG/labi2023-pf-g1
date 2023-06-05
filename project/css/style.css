@@ -239,6 +239,7 @@ body{
 
 .sidebar{
   position: fixed;
+  z-index: 50;
   top: 0;
   left: 0;
   height: 100%;
@@ -495,7 +496,7 @@ body{
 
 .footer_content{
   position: absolute;
-  background-color: rgba(255,255,255,0.75);
+  background-color: rgba(29, 27, 49, 0.75);
   height: 60px;
   padding-top: 8px;
   width: calc(100% - 78px);

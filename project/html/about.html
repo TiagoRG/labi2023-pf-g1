@@ -86,101 +86,98 @@
             </div>
         </div>
     </div>
-    <div class="home_content">
-        <div class="about-container">
-            <div class="page-title-section">
-                <div class="page-title-spacer"></div>
-                <div class="page-title">
-                    <h1 style="scale: 200%">LABI - Projeto Final</h1>
-                    <h2 style="padding-top: 40px; padding-bottom: 25px">Repositório: <a href="https://github.com/detiuaveiro/projeto-final-labi2023g1">projeto-final-labi2023g1</a></h2>
-                    <button onclick="goToSection('#description')" style="cursor: pointer">Descrição</button>
-                    <button onclick="goToSection('#group')" style="cursor: pointer">Grupo</button>
-                    <button onclick="goToSection('#bibliography')" style="cursor: pointer">Bibliografia</button>
-                </div>
+    <div id="container" class="about-container">
+        <div class="page-title-section" style="position: relative">
+            <div class="page-title-spacer"></div>
+            <div class="page-title">
+                <h1>LABI - PROJETO FINAL</h1>
+                <h2 style="padding-top: 40px; padding-bottom: 25px">REPOSITÓRIO: <a target="_blank" href="https://github.com/detiuaveiro/projeto-final-labi2023g1">PROJETO-FINAL-LABI2023G1</a></h2>
+                <button onclick="goToSection('#description')" style="cursor: pointer">DESCRIÇÃO</button>
+                <button onclick="goToSection('#group')" style="cursor: pointer">GRUPO</button>
+                <button onclick="goToSection('#bibliography')" style="cursor: pointer">BIBLIOGRAFIA</button>
             </div>
-            <script>
-                $(document).ready(function(){
-                    $(".page-title-section").height($(window).height());
-                    $(".page-title-spacer").height(($(window).height()-$(".page-title").height())/2);
-                });
-
-                function goToSection(id) {
-                    $('.about-container').animate({
-                        scrollTop: $(id).offset().top - 25
-                    }, 500);
-                }
-            </script>
-            <h2 id="description">Descrição do Projeto</h2>
-            <p>
-                Paragraph 1
-            </p>
-            <p>
-                Paragraph 2
-            </p>
-            <p>
-                Paragraph 3
-            </p>
-            <p>
-                Paragraph 4
-            </p>
-            <p>
-                Paragraph 5
-            </p>
-            <hr>
-            <h2 id="group">Grupo 1</h2>
-            <div class="students-outer-grid">
-                <div class="students-inner-grid">
-                    <img src="../images/Adrego.jpg" alt="Adrego">
-                    <p>Bruno Pereira<br>
-                    NMec: 112726<br>
-                    Email: <a href="mailto:brunoborlido@ua.pt">brunoborlido@ua.pt</a><br>
-                    Github: <a href="https://github.com/brunombp">brunombp</a></p>
-                </div>
-                <div class="students-inner-grid">
-                    <img src="../images/f3309a42-2e69-408f-9cd5-a56fffee21e0.png" alt="Adrego">
-                    <p>Tiago Ferreira<br>
-                    NMec: 112787<br>
-                    Email: <a href="mailto:taof@ua.pt">taof@ua.pt</a><br>
-                    Github: <a href="https://github.com/tiagof-pk">tiagof-pk</a></p>
-                </div>
-                <div class="students-inner-grid">
-                    <img height="512" src="../images/ThumbsDown.jpg" alt="Adrego">
-                    <p>Tiago Garcia<br>
-                    NMec: 114184<br>
-                    Email: <a href="mailto:tiago.rgarcia@ua.pt">tiago.rgarcia@ua.pt</a><br>
-                    Github: <a href="https://github.com/TiagoRG">TiagoRG</a></p>
-                </div>
-                <div class="students-inner-grid">
-                    <img src="../images/Adrego.jpg" alt="Adrego">
-                    <p>Rúben Gomes<br>
-                    NMec: 113435<br>
-                    Email: <a href="mailto:rlcg@ua.pt">rlcg@ua.pt</a><br>
-                    Github: <a href="https://github.com/RubenCGomes">RubenCGomes</a></p>
-                </div>
-            </div>
-            <hr>
-            <h2 id="bibliography">Bibliografia</h2>
-            <p>
-                <a href="">Reference 1</a><br>
-                <a href="">Reference 2</a><br>
-                <a href="">Reference 3</a><br>
-                <a href="">Reference 4</a><br>
-                <a href="">Reference 5</a><br>
-            </p>
-            <a href="https://www.ua.pt/"><img src="../images/uacolored.png" alt="UA" style="margin-top: 50px" width="150" height="150"></a>
         </div>
+        <h2 id="description" style="margin-top: 35px">Descrição</h2>
+        <button onclick="openPopup('#project-description')">Descrição do Projeto</button>
+        <button onclick="openPopup('#project-roadmap')">RoadMap do Project</button>
+        <hr>
+        <h2 id="group">Grupo 1</h2>
+        <div class="students-outer-grid">
+            <div class="students-inner-grid">
+                <img src="../images/Adrego.jpg" alt="Adrego">
+                <p>Bruno Pereira<br>
+                NMec: 112726<br>
+                Email: <a href="mailto:brunoborlido@ua.pt">brunoborlido@ua.pt</a><br>
+                Github: <a href="https://github.com/brunombp">brunombp</a></p>
+            </div>
+            <div class="students-inner-grid">
+                <img src="../images/ThumbsUp.jpg" alt="Adrego">
+                <p>Tiago Ferreira<br>
+                NMec: 112787<br>
+                Email: <a href="mailto:taof@ua.pt">taof@ua.pt</a><br>
+                Github: <a href="https://github.com/tiagof-pk">tiagof-pk</a></p>
+            </div>
+            <div class="students-inner-grid">
+                <img height="512" src="../images/ThumbsDown.jpg" alt="Adrego">
+                <p>Tiago Garcia<br>
+                NMec: 114184<br>
+                Email: <a href="mailto:tiago.rgarcia@ua.pt">tiago.rgarcia@ua.pt</a><br>
+                Github: <a href="https://github.com/TiagoRG">TiagoRG</a></p>
+            </div>
+            <div class="students-inner-grid">
+                <img src="../images/Adrego.jpg" alt="Adrego">
+                <p>Rúben Gomes<br>
+                NMec: 113435<br>
+                Email: <a href="mailto:rlcg@ua.pt">rlcg@ua.pt</a><br>
+                Github: <a href="https://github.com/RubenCGomes">RubenCGomes</a></p>
+            </div>
+        </div>
+        <hr>
+        <h2 id="bibliography">Bibliografia</h2>
+        <p>
+            <a href="">Reference 1</a><br>
+        </p>
+        <a href="https://www.ua.pt/"><img src="../images/uacolored.png" alt="UA" style="margin-top: 50px" width="150" height="150"></a>
     </div>
-    <footer class="footer_content">
+    <div id="popups">
+        <div id="project-description">
+            <h1>
+                Descrição do Projeto
+            </h1>
+            <p>
+                Este website foi desenvolvido no âmbito da unidade curricular de Laboratórios de Informática.
+            </p>
+            <p>
+                Baseia-se numa aplicação de partilha de imagens. Cada utilizador poderá criar uma conta e fazer upload de imagens para a sua conta. Estas imagens poderão ser vistas por outros utilizadores.
+            </p>
+        </div>
+        <div id="project-roadmap">
+            <h1>
+                Roadmap do Projeto
+            </h1>
+            <p>
+                Linha 1 do roadmap do projeto
+            </p>
+            <p>
+                Descrição do processo de desenvolvimento do projeto
+            </p>
+        </div>
+        <button id="popup-close-button" onclick="closePopup()"><img src="../images/close.png" alt=""></button>
+        <button id="switch-description-prev" class="switch-popup" onclick="switchPopup()"><img src="../images/prev_cut.png" alt=""></button>
+        <button id="switch-description-next" class="switch-popup" onclick="switchPopup()"><img src="../images/next.png" alt=""></button>
+    </div>
+    <footer id="footer" class="footer_content" style="background-color: unset">
         <div class="footer">
             <p>&copy; 2023 Your Website. Todos os direitos reservados.</p>
             <ul class="list-inline">
-                <li style="display: inline-block"><a href="#">Privacy</a> | </li>
-                <li style="display: inline-block"><a href="#">Terms</a> | </li>
-                <li style="display: inline-block"><a href="#">Support</a></li>
+                <li style="display: inline-block"><a href="#" class="footer-link">Privacy</a> | </li>
+                <li style="display: inline-block"><a href="#" class="footer-link">Terms</a> | </li>
+                <li style="display: inline-block"><a href="#" class="footer-link">Support</a></li>
             </ul>
         </div>
     </footer>
 
     <script src="../js/script.js"></script>
+    <script src="../js/about.js"></script>
 </body>
 </html>
