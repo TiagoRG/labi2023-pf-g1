@@ -2,9 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Upload image</title>
+	<!--JAVASCRIPT IMPORTS-->
+	<script src="../js/upload.js"></script>
+	<!--PERSONAL STYLESHEETS-->
+	<link rel="stylesheet" href="../css/upload.css">
+	<!--BOOTSTRAP IMPORTS-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<!--FONT IMPORTS-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
 </head>
 <body>
+	<div id="upload-content" class="h1">
+		<h1 id="upload-text">Upload image</h1>
+		<hr>
+		<div class="content_image">
+			<div class="btn-default btn-block" id="image-block">
+				<input type="file" accept="image/*" id="image-input" onchange="updatePhoto(event)">
+				<canvas id="photo" width="550" height="450"></canvas>
+			</div>
+			<hr>
+			<div class="input-group btn-secondary btn-input" style="text-align: center">
+				<label for="nameImg" class="text-style center-item">Image Name</label>
+				<input type="text" id="nameImg" name="nameImg" required>
+				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<label for="authorImg" class="text-style center-item">Image Author</label>
+				<input type="text" id="authorImg" name="authorImg" required>
+				&nbsp; &nbsp;
+				<input type="button" class="btn btn-success button-upload text-button" value="Upload" onclick="uploadImage()">
+			</div>
 
+			<div>
+				<input type="button" class="btn btn-success button-close text-button" value="Close" onclick="self.close()">
+			</div>
+		</div>
+	</div>
 </body>
+<script src="../js/script.js"></script>
 </html>

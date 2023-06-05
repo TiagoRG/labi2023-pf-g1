@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+#upload-content {
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.h1 #upload-text {
+  font-family: Raleway, sans-serif;
+  font-size: xx-large;
+  font-weight: 1000;
+}
+
+#image-block {
+  border-radius: 1%;
+}
+
+#image-input {
+  display: flex;
+  margin-left: 10px;
+  font-size: medium;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-close {
+  max-height: 40px;
+  max-width: 200px;
+  width: 50%;
+  height: 8%;
+  margin: 2% auto;
+  position: relative;
+  box-shadow: 0 0 20px 9px #ff61241f;
+  border-radius: 20% 20%;
+}
+
+.button-upload {
+  max-height: 40px;
+  max-width: 100px;
+  width: 50%;
+  height: 8%;
+  position: relative;
+  box-shadow: 0 0 30px 5px #ff61241f;
+  border-radius: 20% 20%;
+}
+
+.text-style {
+  font-family: Poppins, sans-serif;
+  font-weight: normal;
+  font-size: medium;
+}
+
+.text-button {
+  font-family: Raleway, sans-serif;
+  font-weight: bolder;
+  font-size: medium;
+}
+
+.input-group {
+  font-size: medium;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 20% 20%;
+}
+
+.center-item {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
+
