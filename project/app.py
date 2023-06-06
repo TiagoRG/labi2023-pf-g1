@@ -21,8 +21,13 @@ config = {
 
 
 class Root(object):
+    def __init__(self):
+        self.actions = Actions()
+
     @cherrypy.expose
     def index(self):
+        self.actions = Actions()
+        cherrypy.response.headers['Content-Type'] = 'text/html'
         return open("html/index.html")
 
     def intro(self):
@@ -55,6 +60,38 @@ class Root(object):
         db.close()
 
         return "Upload successful!"
+
+
+class Actions(object):
+    @cherrypy.expose
+    def doLogin(self, username, password):
+        db = sql.connect('database.db')
+        cherrypy.tree.mount(cherrypy, '/index')
+        cherrypy.log("Login attempt from " + username)
+
+        if str(username).count('@') > 0:
+            result = db.execute('SELECT * FROM users WHERE email=? AND password=?', (username, password))
+        else:
+            result = db.execute('SELECT * FROM users WHERE username=? AND password=?', (username, password))
+        if result.fetchone():
+            return "Login successful!"
+        else:
+            return "Login failed!"
+
+    @cherrypy.expose
+    def doRegister(self, username, email, password):
+        db = sql.connect('database.db')
+        cherrypy.tree.mount(cherrypy, '/index')
+        cherrypy.log("Registration attempt from " + username)
+
+        result = db.execute('SELECT * FROM users WHERE username=? OR email=?', (username, email))
+        if result.fetchone():
+            return "Username or email already taken!"
+        else:
+            db.execute('INSERT INTO users(username, email, password) VALUES (?, ?, ?)', (username, email, password))
+            db.commit()
+            db.close()
+            return "Registration successful!"
 
 
 if __name__ == "__main__":
