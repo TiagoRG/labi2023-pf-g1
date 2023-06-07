@@ -43,7 +43,7 @@ $(document).keydown(function (key) {
         if (key.keyCode === 27) {
             closePopup();
         }
-        else if (key.keyCode === 37 || key.keyCode === 39) {
+        else if (key.keyCode === 37 || key.keyCode === 39 || key.keyCode === 65 || key.keyCode === 68) {
             switchPopup();
         }
     }
