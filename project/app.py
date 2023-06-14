@@ -35,6 +35,14 @@ class Root(object):
         return open("html/main.html")
 
     @cherrypy.expose
+    def gallery(self):
+        return open("html/gallery.html")
+
+    @cherrypy.expose
+    def profile(self):
+        return open("html/profile.html")
+
+    @cherrypy.expose
     def upload(self, myFile, author):
         db = sql.connect('database.db')
         ext = os.path.splitext(myFile.filename)[1]
