@@ -47,6 +47,24 @@ class Root(object):
         return open("html/profile.html")
 
     @cherrypy.expose
+    def comments(self, image_id):
+        db = sql.connect('database.db')
+        # will fetch the image
+        result = db.execute('SELECT * FROM comments WHERE idimg=?', image_id)
+        row = result.fetchone()
+
+        imageinfo = {'id': row[0], 'name': row[1], 'author': row[2], 'path': row[3], 'created_at': row[4]}
+
+        # will fetch the comments
+        result = db.execute('SELECT * FROM comments WHERE idimg=?', imageinfo['id'])
+        rows = result.fetchall()
+        comments = []
+        for row in rows:
+            comments.append({'id': row[0], 'idimg': row[1], 'author': row[2], 'comment': row[3], 'created_at': row[4]})
+
+        db.close()
+
+    @cherrypy.expose
     def upload(self):
         return open("html/upload.html")
 

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/image.css">
+    <style>
+			*,
+			*::before,
+			*::after {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				list-style-type: none;
+				text-decoration: none;
+			}
+
+			:root {
+				--primary: #ec994b;
+				--white: #ffffff;
+				--bg: #f5f5f5;
+			}
+
+			html {
+				font-size: 68%;
+				font-family: 'Poppins', sans-serif;
+				scroll-behavior: smooth;
+			}
+
+			::-webkit-scrollbar {
+				width: 1.3rem;
+			}
+
+			::-webkit-scrollbar-thumb {
+				border-radius: 1rem;
+				background: #797979;
+				transition: all 0.5s ease-in-out;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: #222224;
+			}
+
+			::-webkit-scrollbar-track {
+				background: #f9f9f9;
+			}
+
+			body {
+				font-size: 1.6rem;
+				background: var(--bg);
+			}
+
+			.container {
+				max-width: calc(100% - 26rem);
+				padding: 0 1rem;
+				margin: 0 auto;
+			}
+		</style>
+    <title>Image</title>
+</head>
+<body>
+    <div class="sidebar">
+			<div class="logo_content">
+				<div class="logo">
+					<i class='bx bxl-html5'></i>
+					<div class="logo_name">Dashboard</div>
+				</div>
+				<i class='bx bx-menu' id="btn"></i>
+			</div>
+			<ul class="nav_list">
+				<li style="margin: 0 -24.7px">
+					<i class='bx bx-search' ></i>
+					<label>
+						<input type="text" placeholder="Search...">
+					</label>
+					<span class="tooltip">Search</span>
+				</li>
+				<li style="margin: 0 -24.7px">
+					<a href="/profile">
+						<i class='bx bx-user' ></i>
+						<span class="links_name">User</span>
+					</a>
+					<span class="tooltip">User</span>
+				</li>
+				<li style="margin: 0 -24.7px">
+					<a href="/upload">
+						<i class='bx bx-upload'></i>
+						<span class="links_name">Upload Photo</span>
+					</a>
+					<span class="tooltip">Upload Photo</span>
+				</li>
+				<li style="margin: 0 -24.7px">
+					<a href="/gallery">
+						<i class='bx bx-photo-album' ></i>
+						<span class="links_name">Gallery</span>
+					</a>
+					<span class="tooltip">Gallery</span>
+				</li>
+				<li style="margin: 0 -24.7px">
+					<a href="/main">
+						<i class='bx bx-chart' ></i>
+						<span class="links_name">Highlights</span>
+					</a>
+					<span class="tooltip">Highlights</span>
+				</li>
+				<li style="margin: 0 -24.7px">
+					<a href="/main">
+						<i class='bx bx-heart' ></i>
+						<span class="links_name">Favorites</span>
+					</a>
+					<span class="tooltip">Favorites</span>
+				</li>
+				<li style="margin: 0 -24.7px">
+					<a href="/profile">
+						<i class='bx bx-cog' ></i>
+						<span class="links_name">Settings</span>
+					</a>
+					<span class="tooltip">Settings</span>
+				</li>
+			</ul>
+			<div class="profile_content">
+				<div class="profile">
+					<div class="profile_details">
+						<img src="../images/Adrego.jpg" alt="">
+						<div class="name_job">
+							<div class="name">Adrego Rocha</div>
+							<div class="job">Professor</div>
+						</div>
+					</div>
+					<i class='bx bx-log-out' id="log_out"></i>
+				</div>
+			</div>
+		</div>
+
+	<div id="content">
+		<div id="post-box" class="row">
+			<div id="image-box" class="left-item column">
+				<h2 id="title" style="text-align: center">Image name</h2>
+				<img src="../images/image1.jpg" id="image" alt="">
+				<div style="text-align: right; margin-right: 10%">
+					<img src="../images/ThumbsUp.jpg" alt="Upvote" href="#" id="upvote" class="vote_image">
+					<img src="../images/ThumbsDown.jpg" alt="Downvote" href="#" id="downvote" class="vote_image">
+				</div>
+			</div>
+
+			<div id="comments-box" class="right-item column">
+				<h2 style="text-align: center">Comments</h2>
+				<br>
+				<div id="comments">
+
+				</div>
+				<br>
+				<div id="comment-form" style="font-size: medium">
+					<form action="" method="post">
+						<label for="comment"></label><textarea name="comment" id="comment" cols="30" rows="2" placeholder="Write a comment..." class="text"></textarea>
+						<input type="submit" value="Comment" id="submit">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="../js/script.js"></script>
+<script src="../js/imageinfo.js"></script>
+</html>
