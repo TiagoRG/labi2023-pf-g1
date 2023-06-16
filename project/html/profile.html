@@ -51,7 +51,6 @@
 
 			body {
 				font-size: 1.6rem;
-				background: var(--bg);
 			}
 
 			.container {
@@ -199,34 +198,33 @@
             <h2>Edit Settings</h2>
             <a class="close" href="#">&times;</a>
             <div class="content">
-                <form action="">
-                    <p>Name:
+                <form action="" style="margin-left: 10%">
+                    <p>Name:</p>
 						<input type="text" class="text" placeholder="Name">
-					</p>
-					<p>User Name:
+					<p>User Name:</p>
 						<input type="text" class="text" placeholder="User Name">
-					</p>
-					<p>Email:
-						<input type="email" class="text" placeholder="User Name"></p>
-                    <p>Password:
+					<p>Email:</p>
+						<input type="email" class="text" placeholder="Email">
+                    <p>Password:</p>
 						<input type="password" class="text" placeholder="Enter Password">
-					</p>
-					<p>Confirm Password:
+					<p>Confirm Password:</p>
 						<input type="password" class="text" placeholder="Confirm Password">
-					</p>
-					<p>Phone Number:
-						<input type="tel" class="text" placeholder="Phone Number">
-					</p>
-					<p>Country:
+					<p>Phone Number:</p>
+						<input type="text" class="text" placeholder="Phone Number">
+					<p>Country:</p>
 						<input type="text" class="text" placeholder="Country">
-					</p>
-					<p>City:
+					<p>City:</p>
 						<input type="text" class="text" placeholder="City">
-					</p>
-					<p>Bio:</p><input id="bio" type="text" class="bio-text" placeholder="Bio">
-
+					<p>Bio:</p>
+						<input id="bio" type="text" class="bio-text" placeholder="Bio">
                     <button type="submit" class="submit-btn">Apply</button>
                 </form>
+				<div class="edit-img">
+					<button class="edit-btn" >
+						<span class="btn-text">Change Image</span>
+					</button>
+            	</div>
+
             </div>
         </div>
     </div>
