@@ -1,34 +1,71 @@
-var file;
+const dragArea = document.querySelector(".drag-area");
+const dragText = document.querySelector(".header");
 
-function updatePhoto(event) {
-	var reader = new FileReader();
-	reader.onload = function(event) {
-		//Create an imagem
-		var img = new Image();
-		img.onload = function() {
+let button = document.querySelector(".button");
+let input = document.querySelector("input");
 
-			//Put imagen on screen
-			const canvas = $("#photo")[0];
-			const ctx = canvas.getContext("2d");
-			ctx.drawImage(img,0,0,img.width,img.height,0,0,550, 450);
+let file;
+
+button.onclick = () => {
+	input.click();
+}
+
+// When browse button is clicked
+input.addEventListener("change", function () {
+	// Getting the file
+	file = this.files[0];
+
+	dragArea.classList.add("active");
+
+	displayFile();
+});
+
+// When file is dragged over the drag area
+dragArea.addEventListener("dragover", (event) => {
+	event.preventDefault();
+	dragText.textContent = "Release to Upload File";
+	dragArea.classList.add("active");
+	// console.log("File is over the drag area");
+});
+
+// When file leaves the drag area
+dragArea.addEventListener("dragleave", () => {
+	dragText.textContent = "Drag & Drop";
+	dragArea.classList.remove("active");
+	// console.log("File is outside the drag area");
+});
+
+// When file is dropped on the drag area
+dragArea.addEventListener("drop", (event) => {
+	event.preventDefault();
+
+	// Getting the file
+	file = event.dataTransfer.files[0];
+
+	displayFile();
+});
+
+function displayFile() {
+	let fileType = file.type;
+	let validExtensions = ["image/jpeg", "image/jpg", "image/png"];
+
+	if (validExtensions.includes(fileType)) {
+		let fileReader = new FileReader();
+
+		fileReader.onload = () => {
+			let fileURL = fileReader.result;
+			console.log(fileURL);
+			let imgTag = `<img src="${fileURL}" alt="">`;
+			console.log(imgTag);
+			dragArea.innerHTML = imgTag;
 		}
-		img.src = event.target.result;
+		fileReader.readAsDataURL(file);
+	} else {
+		alert("This is not an Image File!");
+		dragArea.classList.remove("active");
+		dragText.textContent = "Drag & Drop";
 	}
-
-	file = event.target.files[0];
-	//Obtain the file
-	reader.readAsDataURL(file);
 }
-
-function uploadImage() {
-    if(file != null) {
-        sendFile(file);
-        //Release the resources alocated to the selected image
-        window.URL.revokeObjectURL(file);
-    }
-    else alert("No image attached!");
-}
-
 
 function sendFile(file) {
 	var data = new FormData();
@@ -41,14 +78,16 @@ function sendFile(file) {
 	var author = document.getElementById("authorImg").value;
 	data.append("my_file_author", author)
 
-	console.log(data);
-
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "/actions/upload_image");
-	xhr.upload.addEventListener("progress", updateProgress(this), false);
 	xhr.send(data);
 }
 
-function updateProgress(evt){
-	if(evt.loaded == evt.total) alert("Okay");
+function uploadImage() {
+	if(file != null) {
+		sendFile(file);
+		//Release the resources alocated to the selected image
+		window.URL.revokeObjectURL(file);
+	}
+	else alert("No image attached!");
 }
