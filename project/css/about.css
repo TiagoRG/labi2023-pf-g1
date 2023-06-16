@@ -153,6 +153,7 @@ button:hover {
 
 #project-description, #project-roadmap {
     display: none;
+    z-index: 102;
     position: absolute;
     width: 60%;
     height: 60%;
@@ -183,6 +184,7 @@ button:hover {
 
 #popup-close-button {
     position: fixed;
+    z-index: 102;
     align-self: center;
     align-items: center;
     justify-items: center;
@@ -205,11 +207,13 @@ button:hover {
 }
 
 #switch-description-prev {
-    left : 16.5%
+    left : 16.5%;
+    z-index: 102;
 }
 
 #switch-description-next {
-    right : 16.5%
+    right : 16.5%;
+    z-index: 102;
 }
 
 .footer a {

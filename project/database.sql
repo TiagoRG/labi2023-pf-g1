@@ -1,5 +1,5 @@
 CREATE TABLE comments (
-    id AUTOINCREMENT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     idimg INTEGER,
     user TEXT,
     comment TEXT,
@@ -7,7 +7,7 @@ CREATE TABLE comments (
 );
 
 CREATE TABLE images (
-    id AUTOINCREMENT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
     author TEXT,
     path TEXT,
@@ -15,7 +15,7 @@ CREATE TABLE images (
 );
 
 CREATE TABLE users (
-    id AUTOINCREMENT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
     username TEXT,
     email TEXT,
@@ -23,7 +23,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE votes (
-    id AUTOINCREMENT PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     idimg INTEGER,
     ups INTEGER,
     downs INTEGER

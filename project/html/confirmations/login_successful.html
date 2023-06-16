@@ -10,33 +10,36 @@
         body {
             background-color: #f1f1f1;
             scale: 150%;
+            padding-top: 10%;
+            overflow: hidden;
         }
-        h1 {
+        h1, h4 {
             text-align: center;
-            margin-top: 20%;
             scale: 150%;
-        }
-        button {
-            margin-left: 50%;
-            transform: translateX(-50%);
-            margin-top: 20px;
-            background-color: #f1f1f1;
-            padding: 10px;
-            border: 1px solid #11101d;
-            border-radius: 5px;
-            background-color: rgba(29, 27, 49, 0.75);
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #11101d;
-            scale: 105%;
-            transition: 0.1s;
         }
     </style>
 </head>
-<body>
+<body onload="countdown(2)">
 <h1>Login successful</h1>
-<button onclick="window.location.href='/main'">Home</button>
+<h4>Being redirected to main in <a style="text-decoration: none; color: unset" id="timeout"></a>...</h4>
+<script>
+    function countdown(time) {
+        let cnt = 0;
+        document.getElementById("timeout").innerHTML = `${time}`;
+        setInterval(function () {
+            if (cnt < 250) {
+                cnt++;
+            }
+            else {
+                time--;
+                cnt = 0;
+                document.getElementById("timeout").innerHTML = `${time}`;
+                if (time <= 0) {
+                    window.location.href = "/main";
+                }
+            }
+        }, 1);
+    }
+</script>
 </body>
 </html>

@@ -24,7 +24,7 @@ function uploadImage() {
     if(file != null) {
         sendFile(file);
         //Release the resources alocated to the selected image
-        window.URL.revokeObjectURL(picURL);
+        window.URL.revokeObjectURL(file);
     }
     else alert("No image attached!");
 }
@@ -32,21 +32,21 @@ function uploadImage() {
 
 function sendFile(file) {
 	var data = new FormData();
-	data.append("myFile", file);
-
+	data.append("my_file", file);
 
 	//Obtain nameImg and authorImg and fill the form
-	var name = document.getElementById("nameImg");
+	var name = document.getElementById("nameImg").value;
+	data.append("my_file_name", name)
 
-	var author = document.getElementById("authorImg");
+	var author = document.getElementById("authorImg").value;
+	data.append("my_file_author", author)
 
-	if (name == "" || author == "") alert("Missing name and/or author!");
-	else {
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "/upload");
-		xhr.upload.addEventListener("progress", updateProgress(this), false);
-		xhr.send(data);
-	}
+	console.log(data);
+
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "/actions/upload_image");
+	xhr.upload.addEventListener("progress", updateProgress(this), false);
+	xhr.send(data);
 }
 
 function updateProgress(evt){

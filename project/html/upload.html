@@ -20,18 +20,19 @@
 		<hr>
 		<div class="content_image">
 			<div class="btn-default btn-block" id="image-block">
-				<input type="file" accept="image/*" id="image-input" onchange="updatePhoto(event)">
+				<input type="file" accept="image/*" id="image-input" name="my_file" onchange="updatePhoto(event)">
 				<canvas id="photo" width="550" height="450"></canvas>
 			</div>
 			<hr>
 			<div class="input-group btn-secondary btn-input" style="text-align: center">
-				<label for="nameImg" class="text-style center-item">Image Name</label>
-				<input type="text" id="nameImg" name="nameImg" required>
-				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-				<label for="authorImg" class="text-style center-item">Image Author</label>
-				<input type="text" id="authorImg" name="authorImg" required>
-				&nbsp; &nbsp;
-				<input type="button" class="btn btn-success button-upload text-button" value="Upload" onclick="uploadImage()">
+
+					<label for="nameImg" class="text-style center-item">Image Name</label>
+					<input type="text" id="nameImg" name="name_img">
+					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+					<label for="authorImg" class="text-style center-item">Image Author</label>
+					<input type="text" id="authorImg" name="author_img">
+					&nbsp; &nbsp;
+					<input type="submit" class="btn btn-success button-upload text-button" value="Upload" onclick="uploadImage()">
 			</div>
 
 			<div>
