@@ -1,4 +1,5 @@
 import hashlib
+import json
 import os
 import cherrypy
 import sqlite3 as sql
@@ -47,6 +48,10 @@ class Root(object):
         return open("html/profile.html")
 
     @cherrypy.expose
+    def image(self, image_id):
+        return open("html/image.html")
+
+    @cherrypy.expose
     def comments(self, image_id):
         db = sql.connect('database.db')
         # will fetch the image
@@ -59,10 +64,42 @@ class Root(object):
         result = db.execute('SELECT * FROM comments WHERE idimg=?', imageinfo['id'])
         rows = result.fetchall()
         comments = []
-        for row in rows:
-            comments.append({'id': row[0], 'idimg': row[1], 'author': row[2], 'comment': row[3], 'created_at': row[4]})
+        for i in rows:
+            comments.append({'id': i[0], 'idimg': i[1], 'author': i[2], 'comment': i[3], 'created_at': i[4]})
 
+        # will fetch the votes
+        result = db.execute('SELECT * FROM votes WHERE id=?', image_id)
+        row = result.fetchone()
         db.close()
+
+        imagevotes = {'thumbs_up': row[2], 'thumbs_down': row[3]}
+
+        cherrypy.response.headers['Content-Type'] = 'application/json'
+        return json.dumps({'imageinfo': imageinfo, 'comments': comments, 'imagevotes': imagevotes}).encode('utf-8')
+
+    @cherrypy.expose
+    def newcomment(self, imageid, user, comment):
+        db = sql.connect('database.db')
+        db.execute('INSERT INTO comments(idimg, user, comment) VALUES (?, ?, ?)', (imageid, user, comment))
+        db.commit()
+        db.close()
+        return "Comment added!"
+
+    @cherrypy.expose
+    def upvote(self, imageid):
+        db = sql.connect('database.db')
+        db.execute('UPDATE votes SET ups = ups + 1 WHERE id = ?', imageid)
+        db.commit()
+        db.close()
+        return "Upvote added!"
+
+    @cherrypy.expose
+    def downvote(self, imageid):
+        db = sql.connect('database.db')
+        db.execute('UPDATE votes SET downs = downs + 1 WHERE id = ?', imageid)
+        db.commit()
+        db.close()
+        return "Downvote added!"
 
     @cherrypy.expose
     def upload(self):
@@ -150,6 +187,10 @@ class Actions(object):
         result = db.execute('SELECT path FROM images WHERE name=?', image_name)
         db.close()
         return open(result.fetchone()[0])
+
+    @cherrypy.expose
+    def get_logged_user(self):
+        return self.logged_user
 
 
 if __name__ == "__main__":
