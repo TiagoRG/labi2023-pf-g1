@@ -10,9 +10,15 @@ body {
     background-repeat: no-repeat;
     background-image: url("../images/Background.jpg");
     overflow-x: hidden;
-    padding-top: 90px;
     font-family:'Poppins', sans-serif;
     margin: 0 100px ;
+}
+
+.home_content{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("../images/Background.jpg");
 }
 
 .profile-header {
@@ -68,37 +74,7 @@ body {
     margin-right: 5px;
 }
 
-.profile-option {
-    width: 15%;
-    height: 30%;
-    background: #1d1b31;
-    position: absolute;
-    right: 50px;
-    top: 50%;
-    transform: translateY(-50%);
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.5s ease-in-out;
-}
 
-.profile-option:hover {
-    background: #fff;
-    border:1px solid #1d1b31;
-    box-shadow: 0 5px 10px rgb(0,0,0,0.3);
-}
-
-.profile-option .notification i {
-    color: #fff;
-    font-size: 1.2rem;
-    transition: all 0.5s ease-in-out;
-}
-
-.profile-option:hover .notification i {
-    color: #1d1b31;
-}
 
 .main-bd {
     width: 100%;
@@ -212,8 +188,8 @@ button.configbtn,button.createbtn {
     height: 40px;
     background: #fff;
     box-shadow: 0 3px 5px #1d1b31;
-    position: relative; /* Add this line */
-    z-index: 1; /* Add this line */
+    position: relative;
+    z-index: 1;
 }
 
 .nav ul li {
@@ -259,22 +235,22 @@ button.configbtn,button.createbtn {
     transition: all 0.2s ease-in-out;
 }
 
-.profile-posts::-webkit-scrollbar,
+.container::-webkit-scrollbar,
 .content::-webkit-scrollbar {
   width: 10px;
 }
 
-.profile-posts::-webkit-scrollbar-track,
+.container::-webkit-scrollbar-track,
 .content::-webkit-scrollbar-track {
   background-color: #1d1b31;
 }
 
-.profile-posts::-webkit-scrollbar-thumb,
+.container::-webkit-scrollbar-thumb,
 .content::-webkit-scrollbar-thumb {
   background-color: #888;
 }
 
-.profile-posts::-webkit-scrollbar-thumb:hover,
+.container::-webkit-scrollbar-thumb:hover,
 .content::-webkit-scrollbar-thumb:hover {
   background-color: #fff;
 }
@@ -414,8 +390,7 @@ button.configbtn,button.createbtn {
 .profile-posts{
     display: none;
     margin : 2% 2% 2% 2%;
-    overflow-y: scroll;
-    height: 50%;
+    height: 80%;
     flex-wrap: wrap;
     gap: 10px;
 }
@@ -423,14 +398,14 @@ button.configbtn,button.createbtn {
 .profile-posts .post{
     background: transparent;
     border : 0;
-    margin : 2% 2% 2% 2%;
-    flex : 0 0 40%;
+    margin : 2% 2% 2% 4%;
+    max-width: 225px ;
+    flex : 0 0 0 30%;
     position: relative;
     overflow: hidden;
 }
 
 .post img{
-
     width: 100%;
     height: auto;
     display: block;
@@ -442,9 +417,34 @@ button.configbtn,button.createbtn {
     opacity: 0.7;
 }
 
-.profile-favorites{
-    width: 45%;
-    margin :0;
-    display : none;
-    visibility: hidden;
+.navbar{
+    width: 100%;
+    position: relative;
+    background: #fff;
+    display: none;
+    color: #1d1b31;
+    z-index: -1;
+}
+.navbar ul li {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.navbar ul {
+    margin-right: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    height: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.navbar ul li.active,
+.navbar ul li:hover {
+    box-shadow: 0 -3px 0 #1d1b31 inset;
 }

@@ -54,9 +54,10 @@
 			}
 
 			.container {
-				max-width: calc(100% - 26rem);
-				padding: 0 1rem;
-				margin: 0 auto;
+				max-width: calc(100% - 10rem);
+				max-height: calc(100% - 10rem);
+				overflow-y : scroll;
+				margin: 0 0 0 50px ;
 			}
 		</style>
     <title>Profile</title>
@@ -135,31 +136,33 @@
 			</div>
 		</div>
         <div class="home_content">
-            <div class="container">
+			<div class="navbar" id="navbar">
+                <ul>
+					<li class="user" onclick="scrollUP()">{{USERNAME}}</li>
+                    <li onclick="toggleDiv('posts')" class="user-post">Posts</li>
+                    <li onclick="toggleDiv('favorites')" class="user-favorite">Favorite</li>
+                </ul>
+			</div>
+            <div class="container" id="container" onscroll="showNav()" >
         <div class="profile-header">
             <div class="profile-img">
                     <img src="../images/Adrego.jpg" alt="">
             </div>
                 <div class="profile-nav-info">
-                    <h3 class="user-name">Adrego Rocha</h3>
+                    <h3 class="user-name">{{NAME}}</h3>
                     <div class="address">
-                        <p class="city">Aveiro,</p>
-                        <span class="country">Portugal</span>
-                    </div>
-                </div>
-                <div class="profile-option">
-                    <div class="notification">
-                        <i class="bx bx-photo-album">Change Background</i>
+                        <p class="city">{{CITY}},</p>
+                        <span class="country">{{COUNTRY}}</span>
                     </div>
                 </div>
         </div>
         <div class="main-bd">
           <div class="left-side">
               <div class="profile-side">
-                  <p class="mobile-number"><i class="bx bx-phone"></i>&ensp;000000000</p>
-                  <p class="user-mail"><i class="bx bx-envelope"></i>&ensp;Adrego_lindo@narciso.pt</p>
+                  <p class="mobile-number"><i class="bx bx-phone"></i>&ensp;{{PHONE}}</p>
+                  <p class="user-mail"><i class="bx bx-envelope"></i>&ensp;{{EMAIL}}</p>
                   <div class="user-bio">
-                      <p class="bio">Bio</p>
+                      <p class="bio">{{BIO}}</p>
                   </div>
                   <div class="profile-btn">
 					  <a class="configbtn" href="#settings">
@@ -186,12 +189,40 @@
 				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
 				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
 				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso1.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso1.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso1.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
 			  </div>
 			  <div id="favorites" class="profile-posts">
 				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
 				  <button class="post" onclick=""><img src="../images/narciso1.jpeg" alt="ERROR"></button>
 				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
 				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso1.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso1.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso1.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso1.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
 			  </div>
           </div>
         </div>
@@ -202,27 +233,7 @@
             <h2>Edit Settings</h2>
             <a class="close" href="#">&times;</a>
             <div class="content">
-                <form action="" style="margin-left: 10%">
-                    <p>Name:</p>
-						<input type="text" class="text" placeholder="Name">
-					<p>User Name:</p>
-						<input type="text" class="text" placeholder="User Name">
-					<p>Email:</p>
-						<input type="email" class="text" placeholder="Email">
-                    <p>Password:</p>
-						<input type="password" class="text" placeholder="Enter Password">
-					<p>Confirm Password:</p>
-						<input type="password" class="text" placeholder="Confirm Password">
-					<p>Phone Number:</p>
-						<input type="text" class="text" placeholder="Phone Number">
-					<p>Country:</p>
-						<input type="text" class="text" placeholder="Country">
-					<p>City:</p>
-						<input type="text" class="text" placeholder="City">
-					<p>Bio:</p>
-						<textarea id="bio"  rows="4" class="bio-text" placeholder="Bio"></textarea>
-                    <button type="submit" class="submit-btn">Apply</button>
-                </form>
+               {{SETTINGS FORM}}
 				<div class="edit-img">
 					<button class="edit-btn" >
 						<span class="btn-text">Change Image</span>
@@ -233,22 +244,7 @@
         </div>
     </div>
 
-    <script>
-		var currentDiv = null;
-
-		function toggleDiv(divId) {
-		  var div = document.getElementById(divId);
-
-		  if (currentDiv !== null) {
-			currentDiv.style.display = 'none';
-		  }
-
-		  div.style.display = 'flex';
-		  currentDiv = div;
-		}
-
-		toggleDiv('posts');
-	</script>
+	<script src="../js/profile.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
