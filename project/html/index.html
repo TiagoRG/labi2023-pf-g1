@@ -1,57 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-pt">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <script src="../js/index.js"></script>
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="login">
-        <div class="form-box">
-            <div class="button-box">
-                <div id="btn"></div>
-                <button type="button" id="login-toggle" class="toggle-btn" onclick="login()">Log In</button>
-                <button type="button" id="register-toggle" class="toggle-btn" onclick="register()">Register</button>
-            </div>
-            <div class="login-regist-main">
-                <div class="login-regist">
-                    <form class="input-group" id="login" action="actions/do_login" method="post">
-                    <input type="text" class="input-field"  name="username" placeholder="User Name \ Email" required>
-                    <input type="password" class="input-field" name="password" placeholder="Enter Password" required><br>
-                        <a onclick="showPopup()" id="popup">Forgot Password</a>
-                    <button type="submit" class="submit-btn">Log in</button>
-                    </form>
-                </div>
-                <div class="login-regist">
-                    <form class="input-group" id="register" action="actions/do_register" method="post">
-                    <input type="text" class="input-field" name="name" placeholder="Name" required>
-                    <input type="text" class="input-field" name="username" placeholder="User Name" required>
-                    <input type="email" class="input-field" name="email" placeholder="Email" required>
-                    <input type="password" class="input-field" name="password" placeholder="Enter Password" required>
-                    <input type="password" class="input-field" name="confirm_password" placeholder="Confirm Password" required>
-                    <span class="terms-label">I agree to the terms & conditions</span><input type="checkbox" class="check-box" required><br>
-                    <button type="submit" class="submit-btn">Register</button>
-                </form>
-                </div>
-            </div>
-            <script src="../js/index.js"></script>
-        </div>
-    </div>
-    <div id="popup1" class="overlay">
-        <div class="popup">
-            <h2>Forgot Password</h2>
-            <a class="close" onclick="hidePopup()" href="#">&times;</a>
-            <div class="content">
-                <form action="">
-                    <input type="email" class="input-field" placeholder="User Name \ Email" required>
-                    <input type="password" class="input-field" placeholder="Enter Password" required>
-                    <input type="password" class="input-field" placeholder="Confirm Password" required>
-                    <button type="submit" class="submit-btn">Set Password</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login and Registration</title>
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="stylesheet" href="../css/index.css">
+		<meta name="viewport" content="width=device-width, inicial-scale=1.0">
+    </head>
+    <body>
+        <div class="container">
+			<input type="checkbox" id="flip">
+			<div class="cover">
+				<div class="front">
+					<img src="../images/Img1.jpeg" alt="">
+					<div class="text">
+						<span class="text-1">Upload your photos</span>
+						<span class="text-2">Let's get connected</span>
+					</div>
+				</div>
+				<div class="back">
+					<img class="backImg" src="../images/Img1.jpeg" alt="">
+					<div class="text">
+						<span class="text-1">Upload your photos</span>
+						<span class="text-2">Let's get connected</span>
+					</div>
+				</div>
+			</div>
+			<form action="#">
+				<div class="form-content">
+					<div class="login-form">
+						<div class="title">Login</div>
+						<div class="input-boxes">
+							<div class="inpup-box">
+								<i class='bx bxs-envelope'></i>
+								<input type="text" placeholder="Enter your email" required>
+							</div>
+							<div class="inpup-box">
+								<i class='bx bxs-lock-alt' ></i>
+								<input type="password" placeholder="Enter your password" required>
+							</div>
+							<div class="text"><a href="#">Forgot password?</a></div>
+							<div class="button inpup-box">
+								<input type="submit" value="Submit">
+							</div>
+							<div class="text sign-up-text">Don't have an account? <label for="flip">Signup now</label></div>
+						</div>
+					</div>
+					<div class="signup-form">
+						<div class="title">Signup</div>
+						<div class="input-boxes">
+							<div class="inpup-box">
+								<i class='bx bxs-user'></i>
+								<input type="text" placeholder="Enter your name" required>
+							</div>
+							<div class="inpup-box">
+								<i class='bx bxs-envelope'></i>
+								<input type="text" placeholder="Enter your email" required>
+							</div>
+							<div class="inpup-box">
+								<i class='bx bxs-lock-alt' ></i>
+								<input type="password" placeholder="Enter your password" required>
+							</div>
+							<div class="button inpup-box">
+								<input type="submit" value="Submit">
+							</div>
+							<div class="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+        <script src="../js/index.js"></script>
+    </body>
 </html>
