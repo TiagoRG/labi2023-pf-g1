@@ -2,6 +2,7 @@ CREATE TABLE comments (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     idimg INTEGER,
     user TEXT,
+    title TEXT,
     comment TEXT,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -32,6 +33,5 @@ CREATE TABLE votes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     idimg INTEGER,
     user TEXT,
-    ups INTEGER,
-    downs INTEGER
+    vote INTEGER
 )
