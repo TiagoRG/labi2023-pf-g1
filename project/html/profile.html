@@ -149,7 +149,7 @@
                 </div>
                 <div class="profile-option">
                     <div class="notification">
-                        <i class="bx bx-photo-album">Add Banner</i>
+                        <i class="bx bx-photo-album">Change Background</i>
                     </div>
                 </div>
         </div>
@@ -163,7 +163,7 @@
                   </div>
                   <div class="profile-btn">
 					  <a class="configbtn" href="#settings">
-						 <button class="configbtn"><i class="bx bx-cog" >&ensp;Settings</i>  </button>
+						 <button class="configbtn"><i class="bx bx-cog" >&ensp;Settings</i></button>
 					  </a>
 
 					  <a class="createbtn" onclick="window.open('/upload','popup','width=750, height=750')">
@@ -177,18 +177,22 @@
             <div class="right-side">
               <div class="nav">
                 <ul>
-                    <li onclick="tabs(0)" class="user-post">Posts</li>
-                    <li onclick="tabs(1)" class="user-favorite">Favorite</li>
+                    <li onclick="toggleDiv('posts')" class="user-post">Posts</li>
+                    <li onclick="toggleDiv('favorites')" class="user-favorite">Favorite</li>
                 </ul>
               </div>
-              <div class="profile-body">
-                  <div class="profile-posts tab">
-                      <h1>Your Posts</h1>
-                  </div>
-                  <div class="profile-favorite tab">
-                      <h1>Your Favorite Posts</h1>
-                  </div>
-              </div>
+			  <div id="posts" class="profile-posts ">
+				  <button class="post" onclick=""><img src="../images/narciso1.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
+			  </div>
+			  <div id="favorites" class="profile-posts">
+				  <button class="post" onclick=""><img src="../images/narciso4.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso1.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso2.jpeg" alt="ERROR"></button>
+				  <button class="post" onclick=""><img src="../images/narciso3.jpeg" alt="ERROR"></button>
+			  </div>
           </div>
         </div>
     </div>
@@ -216,7 +220,7 @@
 					<p>City:</p>
 						<input type="text" class="text" placeholder="City">
 					<p>Bio:</p>
-						<input id="bio" type="text" class="bio-text" placeholder="Bio">
+						<textarea id="bio"  rows="4" class="bio-text" placeholder="Bio"></textarea>
                     <button type="submit" class="submit-btn">Apply</button>
                 </form>
 				<div class="edit-img">
@@ -229,33 +233,25 @@
         </div>
     </div>
 
-    <script> src="../js/profile.js" </script>
+    <script>
+		var currentDiv = null;
+
+		function toggleDiv(divId) {
+		  var div = document.getElementById(divId);
+
+		  if (currentDiv !== null) {
+			currentDiv.style.display = 'none';
+		  }
+
+		  div.style.display = 'flex';
+		  currentDiv = div;
+		}
+
+		toggleDiv('posts');
+	</script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
-    <script>
-        var TrandingSlider = new Swiper('.tranding-slider', {
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true,
-            loop: true,
-            slidesPerView: 'auto',
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 100,
-                modifier: 2.5,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            }
-        });
-    </script>
     <script src="../js/script.js"></script>
 </body>
 </html>

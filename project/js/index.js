@@ -1,16 +1,22 @@
 var loginId = document.getElementById("login");
 var registerId = document.getElementById("register");
 var btnId = document.getElementById("btn");
+var loginBtn = document.getElementById("login-toggle");
+var registerBtn = document.getElementById("register-toggle");
 
 function register(){
     loginId.style.left = "-120%";
     registerId.style.left = "8%";
-    btnId.style.left = "50%";
+    btnId.style.left = "54.8%";
+    loginBtn.style.color = "#1d1b31";
+    registerBtn.style.color = "#fff";
 }
 function login(){
     loginId.style.left = "8%";
     registerId.style.left = "120%";
     btnId.style.left = "0%";
+    loginBtn.style.color = "#fff";
+    registerBtn.style.color = "#1d1b31";
 }
 
 function showPopup() {

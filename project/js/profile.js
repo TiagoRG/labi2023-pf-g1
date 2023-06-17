@@ -1,28 +1,19 @@
-$('.nav ul li').click(function(){
 
-    $(this).addClass("active").siblings().removeClass('active');
-})
 
-const tabBtn = document.querySelectorAll('.nav ul li');
-const tab = document.querySelectorAll('.tab');
+var currentDiv = null;
 
-function tabs(panelIndex){
-    tab.forEach(function(node){
-        node.style.display = 'none';
+function toggleDiv(divId) {
+  var div = document.getElementById(divId);
 
-    });
-    tab[panelIndex].style.display = 'block';
-}
-tabs(0);
-function showPopup() {
-     document.getElementById("popup").style.display = "block";
+  if (currentDiv !== null) {
+    currentDiv.style.display = 'none';
+  }
+
+  div.style.display = 'flex';
+  currentDiv = div;
 }
 
-function done() { function done() {
-    document.getElementById("popup").style.display = "none";
-    var password = document.getElementById("pass").value;
+// Initially show the first div
+toggleDiv('posts');
 
-    //DO STUFF WITH PASSWORD HERE
-}
-}
 
