@@ -48,15 +48,37 @@ class Root(object):
     def gallery(self):
         if len(self.actions.logged_user.keys()) == 0 or not self.actions.logged_user[cherrypy.request.headers['Remote-Addr']]:
             return """<body onload="window.location.href='/'"></body>"""
-        return open("html/gallery.html").read().replace("{{SIDEBAR PROFILE}}", self.actions.get_sidebar_profile())
+
+        db = sql.connect('database.db')
+        gallery = db.execute('SELECT * FROM images').fetchall()
+        db.close()
+
+        gallery_html = ""
+        for image in gallery:
+            gallery_html += """
+            <a href="/image?imgid={}">
+            <img src="../{}" alt="">
+            </a>""".format(image[0], image[4])
+
+        return (open("html/gallery.html").read()
+                .replace("{{SIDEBAR PROFILE}}", self.actions.get_sidebar_profile())
+                .replace("{{GALLERY}}", gallery_html))
 
     @cherrypy.expose
     def profile(self):
         if len(self.actions.logged_user.keys()) == 0 or not self.actions.logged_user[cherrypy.request.headers['Remote-Addr']]:
             return """<body onload="window.location.href='/'"></body>"""
+        user = self.actions.get_logged_user()
         return (open("html/profile.html").read()
                 .replace("{{SETTINGS FORM}}", self.actions.get_settings())
-                .replace("{{SIDEBAR PROFILE}}", self.actions.get_sidebar_profile()))
+                .replace("{{SIDEBAR PROFILE}}", self.actions.get_sidebar_profile())
+                .replace("{{NAME}}", user[1])
+                .replace("{{USERNAME}}", user[2])
+                .replace("{{EMAIL}}", user[3])
+                .replace("{{PHONE}}", user[5])
+                .replace("{{COUNTRY}}", user[6])
+                .replace("{{CITY}}", user[7])
+                .replace("{{BIO}}", user[8]))
 
     @cherrypy.expose
     def image(self, imgid):
@@ -149,10 +171,7 @@ class Actions(object):
             return open("html/confirmations/login_failed.html")
 
     @cherrypy.expose
-    def do_register(self, name, username, email, password, confirm_password):
-        if password != confirm_password:
-            return "Passwords do not match!"
-
+    def do_register(self, username, email, password):
         db = sql.connect('database.db')
         cherrypy.tree.mount(cherrypy, '/index')
         cherrypy.log("Registration attempt from " + username)
@@ -163,7 +182,7 @@ class Actions(object):
             return open("html/confirmations/login_failed.html")
         else:
             db.execute('INSERT INTO users(name, username, email, password, profile_pic) VALUES (?, ?, ?, ?, ?)',
-                       (name, username, email, password, 'default.jpeg'))
+                       (username, username, email, password, 'default.jpeg'))
             db.commit()
             self.logged_user[cherrypy.request.headers['Remote-Addr']] = result.fetchone()
             db.close()
