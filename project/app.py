@@ -184,7 +184,7 @@ class Actions(object):
             db.execute('INSERT INTO users(name, username, email, password, profile_pic) VALUES (?, ?, ?, ?, ?)',
                        (username, username, email, password, 'default.jpeg'))
             db.commit()
-            self.logged_user[cherrypy.request.headers['USER-AGENT']] = result.fetchone()
+            self.logged_user[cherrypy.request.headers['USER-AGENT']] = db.execute('SELECT * FROM users WHERE email=? AND password=?', (email, password)).fetchone()
             db.close()
             return open("html/confirmations/login_successful.html")
 
