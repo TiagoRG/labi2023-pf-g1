@@ -85,6 +85,10 @@ function sendFile(file) {
 
 function uploadImage() {
 	if(file != null) {
+		// Show alert to confirm the upload
+		alert("Image uploaded successfully!");
+		document.querySelector("#nameImg").value = "";
+		document.querySelector("#authorImg").value = "";
 		sendFile(file);
 		//Release the resources alocated to the selected image
 		window.URL.revokeObjectURL(file);

@@ -512,16 +512,12 @@ body{
   font-weight: 500;
   margin: 0;
   text-align: center;
+  justify-content: center;
 }
 
 .sidebar.active ~.footer_content{
   width: calc(100% - 240px);
   left: 240px;
-}
-
-.footer p {
-  padding: 0;
-  margin: 0;
 }
 
 .text-center {
