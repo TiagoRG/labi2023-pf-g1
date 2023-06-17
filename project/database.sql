@@ -8,6 +8,7 @@ CREATE TABLE comments (
 
 CREATE TABLE images (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT,
     name TEXT,
     author TEXT,
     path TEXT,
@@ -19,12 +20,18 @@ CREATE TABLE users (
     name TEXT,
     username TEXT,
     email TEXT,
-    password TEXT
+    password TEXT,
+    phone TEXT,
+    country TEXT,
+    city TEXT,
+    bio TEXT,
+    profile_pic TEXT
 );
 
 CREATE TABLE votes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     idimg INTEGER,
+    user TEXT,
     ups INTEGER,
     downs INTEGER
 )

@@ -3,65 +3,45 @@ var id;
 $(document).ready(
     function(){
         const params = new URLSearchParams(window.location.search);
-        id = params.get("id");
-        imagecomments ();
+        id = params.get("imgid");
+		console.log(id);
     });
 
-function imagecomments() {
-	$.get("/comments",
-		{ idimg : id },
-		function(response){
-			showimageandinfo(response);
-		});
-}
-
-function showimageandinfo(response) {
-	// response.image is the image information
-	// response.comments is the image list comments
-	// response.votes is the image votes
-	document.getElementById("title").innerHTML = response.image.title + " by " + response.image.username + " on " + response.image.date;
-	document.getElementById("image").src = response.image.path;
-	for (var i = 0; i < response.comments.length; i++) {
-		var tag = document.createElement("p");
-		var text = document.createTextNode(response.comments[i].username + ": " + response.comments[i].comment + " on " + response.comments[i].date);
-		tag.appendChild(text);
-
-		var element = document.getElementById("comments");
-		element.appendChild(tag);
-	}
-	document.getElementById("upvotes").innerHTML = "Votes: " + response.votes.ups;
-	document.getElementById("downvotes").innerHTML = "Votes: " + response.votes.downs;
-}
-
 function newcomment() {
-	// obtain the user and comment from image page
-	var user = $.get("/get_logged_user");
-	var comment = document.getElementById("comment");
-    $.post("/newcomment",
-        { idimag: id, username: user, newcomment: comment },
-
-        function() { imagecomments(); }
-	);
+	let data = new FormData();
+	data.append("imageid", id);
+	let title = document.querySelector("#comment-title").value
+	data.append("comment_title", title);
+	let comment = document.querySelector("#comment").value
+	data.append("comment", comment);
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "/actions/newcomment");
+	xhr.send(data);
+	console.log(title);
+	console.log(comment);
+	console.log(xhr);
+	alert("Commented!");
+	document.querySelector("#comment-title").value = "";
+	document.querySelector("#comment").value = "";
+	window.location.reload();
 }
-
-var upvoted = localStorage.getItem("upvote");
-var downvoted = localStorage.getItem("downvote");
 
 function upvote() {
-	$.post("/upvote",
-		{ idimag: id },
-		function(response){
-			upvoted = !this.upvoted;
-			downvoted = false;
-		});
+	let data = new FormData();
+	data.append("imageid", id);
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "/actions/upvote");
+	xhr.send(data);
+	alert("Upvoted!");
+	window.location.reload();
 }
 
 function downvote() {
-	$.post("/downvote",
-		{ idimag: id },
-		function(response)
-		{
-			downvoted = !this.downvoted;
-			upvoted = false;
-		});
+	let data = new FormData();
+	data.append("imageid", id);
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", "/actions/downvote");
+	xhr.send(data);
+	alert("Upvoted!");
+	window.location.reload();
 }

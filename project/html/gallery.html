@@ -11,7 +11,7 @@
 		<div class="sidebar">
 			<div class="logo_content">
 				<div class="logo">
-					<i class='bx bxl-html5'></i>
+					<i class='bx bx-cog' ></i>
 					<div class="logo_name">Dashboard</div>
 				</div>
 				<i class='bx bx-menu' id="btn"></i>
@@ -53,30 +53,19 @@
 					<span class="tooltip">Highlights</span>
 				</li>
 				<li>
-					<a href="/main">
+					<a href="/about">
 						<i class='bx bx-heart' ></i>
-						<span class="links_name">Favorites</span>
+						<span class="links_name">About</span>
 					</a>
-					<span class="tooltip">Favorites</span>
-				</li>
-				<li>
-					<a href="/perfil">
-						<i class='bx bx-cog' ></i>
-						<span class="links_name">Settings</span>
-					</a>
-					<span class="tooltip">Settings</span>
+					<span class="tooltip">About</span>
 				</li>
 			</ul>
 			<div class="profile_content">
 				<div class="profile">
 					<div class="profile_details">
-						<img src="../images/Adrego.jpg" alt="">
-						<div class="name_job">
-							<div class="name">Adrego Rocha</div>
-							<div class="job">Professor</div>
-						</div>
+						{{SIDEBAR PROFILE}}
 					</div>
-					<i class='bx bx-log-out' id="log_out"></i>
+					<i class='bx bx-log-out' id="log_out" style="cursor: pointer" onclick="window.location.href='/actions/logout'"></i>
 				</div>
 			</div>
 		</div>

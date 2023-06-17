@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings updated</title>
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #f1f1f1;
+            scale: 150%;
+            padding-top: 10%;
+            overflow: hidden;
+        }
+        h1, h4 {
+            text-align: center;
+            scale: 150%;
+        }
+    </style>
+</head>
+<body onload="countdown(1)">
+<h1>Settings updated</h1>
+<h4>Being redirected back in <a style="text-decoration: none; color: unset" id="timeout"></a>...</h4>
+<script>
+    function countdown(time) {
+        let cnt = 0;
+        document.getElementById("timeout").innerHTML = `${time}`;
+        setInterval(function () {
+            if (cnt < 250) {
+                cnt++;
+            }
+            else {
+                time--;
+                cnt = 0;
+                document.getElementById("timeout").innerHTML = `${time}`;
+                if (time <= 0) {
+                    window.location.href = "/profile";
+                }
+            }
+        }, 1);
+    }
+</script>
+</body>
+</html>

@@ -24,106 +24,126 @@ config = {
 class Root(object):
     def __init__(self):
         self.actions = Actions()
+        cherrypy.response.headers['Content-Type'] = 'text/html'
 
     @cherrypy.expose
     def index(self):
-        self.actions = Actions()
-        cherrypy.response.headers['Content-Type'] = 'text/html'
+        if len(self.actions.logged_user.keys()) > 0 and self.actions.logged_user[cherrypy.request.headers['Remote-Addr']]:
+            return """<body onload="window.location.href='/main'"></body>"""
         return open("html/index.html")
 
     @cherrypy.expose
     def about(self):
-        return open("html/about.html")
+        if len(self.actions.logged_user.keys()) == 0 or not self.actions.logged_user[cherrypy.request.headers['Remote-Addr']]:
+            return """<body onload="window.location.href='/'"></body>"""
+        return open("html/about.html").read().replace("{{SIDEBAR PROFILE}}", self.actions.get_sidebar_profile())
 
     @cherrypy.expose
     def main(self):
-        return open("html/main.html")
+        if len(self.actions.logged_user.keys()) == 0 or not self.actions.logged_user[cherrypy.request.headers['Remote-Addr']]:
+            return """<body onload="window.location.href='/'"></body>"""
+        return open("html/main.html").read().replace("{{SIDEBAR PROFILE}}", self.actions.get_sidebar_profile())
 
     @cherrypy.expose
     def gallery(self):
-        return open("html/gallery.html")
+        if len(self.actions.logged_user.keys()) == 0 or not self.actions.logged_user[cherrypy.request.headers['Remote-Addr']]:
+            return """<body onload="window.location.href='/'"></body>"""
+        return open("html/gallery.html").read().replace("{{SIDEBAR PROFILE}}", self.actions.get_sidebar_profile())
 
     @cherrypy.expose
     def profile(self):
-        return open("html/profile.html")
+        if len(self.actions.logged_user.keys()) == 0 or not self.actions.logged_user[cherrypy.request.headers['Remote-Addr']]:
+            return """<body onload="window.location.href='/'"></body>"""
+        return (open("html/profile.html").read()
+                .replace("{{SETTINGS FORM}}", self.actions.get_settings())
+                .replace("{{SIDEBAR PROFILE}}", self.actions.get_sidebar_profile()))
 
     @cherrypy.expose
-    def image(self, image_id):
-        return open("html/image.html")
+    def image(self, imgid):
+        if len(self.actions.logged_user.keys()) == 0 or not self.actions.logged_user[cherrypy.request.headers['Remote-Addr']]:
+            return """<body onload="window.location.href='/'"></body>"""
 
-    @cherrypy.expose
-    def comments(self, image_id):
         db = sql.connect('database.db')
-        # will fetch the image
-        result = db.execute('SELECT * FROM comments WHERE idimg=?', image_id)
-        row = result.fetchone()
 
-        imageinfo = {'id': row[0], 'name': row[1], 'author': row[2], 'path': row[3], 'created_at': row[4]}
+        # Get image info
+        image = db.execute('SELECT * FROM images WHERE id=?', (imgid,)).fetchone()
+        image_uploader = image[1]
+        image_name = image[2]
+        image_author = image[3]
+        image_path = image[4]
 
-        # will fetch the comments
-        result = db.execute('SELECT * FROM comments WHERE idimg=?', imageinfo['id'])
-        rows = result.fetchall()
-        comments = []
-        for i in rows:
-            comments.append({'id': i[0], 'idimg': i[1], 'author': i[2], 'comment': i[3], 'created_at': i[4]})
+        # Get votes
+        votes = db.execute('SELECT * FROM votes WHERE idimg=?', (imgid,)).fetchall()
+        upvotes = 0
+        downvotes = 0
+        for vote in votes:
+            if vote[3] == 1:
+                upvotes += 1
+            else:
+                downvotes += 1
 
-        # will fetch the votes
-        result = db.execute('SELECT * FROM votes WHERE id=?', image_id)
-        row = result.fetchone()
+        # Get comments
+        comments = db.execute('SELECT * FROM comments WHERE idimg=?', (imgid,)).fetchall()
+        comments_html = ""
+        for comment in comments:
+            comments_html += f"""<h1><b>{comment[3]}</b></h1>
+            <p class="comment-content">{comment[4]}</p>
+            <h4><i>Commented by {comment[2]} at {comment[5]}</i></h4>
+            <hr>"""
+
         db.close()
-
-        imagevotes = {'thumbs_up': row[2], 'thumbs_down': row[3]}
-
-        cherrypy.response.headers['Content-Type'] = 'application/json'
-        return json.dumps({'imageinfo': imageinfo, 'comments': comments, 'imagevotes': imagevotes}).encode('utf-8')
-
-    @cherrypy.expose
-    def newcomment(self, imageid, user, comment):
-        db = sql.connect('database.db')
-        db.execute('INSERT INTO comments(idimg, user, comment) VALUES (?, ?, ?)', (imageid, user, comment))
-        db.commit()
-        db.close()
-        return "Comment added!"
-
-    @cherrypy.expose
-    def upvote(self, imageid):
-        db = sql.connect('database.db')
-        db.execute('UPDATE votes SET ups = ups + 1 WHERE id = ?', imageid)
-        db.commit()
-        db.close()
-        return "Upvote added!"
-
-    @cherrypy.expose
-    def downvote(self, imageid):
-        db = sql.connect('database.db')
-        db.execute('UPDATE votes SET downs = downs + 1 WHERE id = ?', imageid)
-        db.commit()
-        db.close()
-        return "Downvote added!"
+        return (open("html/image.html").read()
+                .replace("{{SIDEBAR PROFILE}}", self.actions.get_sidebar_profile())
+                .replace("{{IMAGE UPLOADER}}", f"{image_uploader}")
+                .replace("{{IMAGE NAME}}", f"{image_name} by {image_author}")
+                .replace("{{PATH}}", f"{image_path}")
+                .replace("{{UPVOTES}}", f"{upvotes}")
+                .replace("{{DOWNVOTES}}", f"{downvotes}")
+                .replace("{{COMMENTS}}", comments_html))
 
     @cherrypy.expose
     def upload(self):
+        if len(self.actions.logged_user.keys()) == 0 or not self.actions.logged_user[cherrypy.request.headers['Remote-Addr']]:
+            return """<body onload="window.location.href='/'"></body>"""
         return open("html/upload.html")
 
 
 class Actions(object):
     def __init__(self):
-        self.logged_user = None
+        self.logged_user = {}
 
     @cherrypy.expose
-    def do_login(self, username, password):
+    def get_logged_user(self):
+        return self.logged_user[cherrypy.request.headers['Remote-Addr']]
+
+    @cherrypy.expose
+    def logout(self):
+        self.logged_user[cherrypy.request.headers['Remote-Addr']] = None
+        return """<body onload="window.location.href='/'"></body>"""
+
+    def update_logged_user(self, email):
+        db = sql.connect('database.db')
+        self.logged_user[cherrypy.request.headers['Remote-Addr']] = db.execute('SELECT * FROM users WHERE email=?', (email,)).fetchone()
+        db.close()
+
+    @cherrypy.expose
+    def get_sidebar_profile(self):
+        return """<img src="uploads/profile-pictures/{}" alt="">
+                    <div class="name_job">
+                        <div class="name">{}</div>
+                    </div>""".format(self.logged_user[cherrypy.request.headers['Remote-Addr']][9], self.logged_user[cherrypy.request.headers['Remote-Addr']][1])
+
+    @cherrypy.expose
+    def do_login(self, email, password):
         db = sql.connect('database.db')
         cherrypy.tree.mount(cherrypy, '/index')
-        cherrypy.log("Login attempt from " + username)
+        cherrypy.log("Login attempt from " + email)
 
-        if str(username).count('@') > 0:
-            result = db.execute('SELECT * FROM users WHERE email=? AND password=?', (username, password))
-            self.logged_user = db.execute('SELECT username FROM users WHERE email=?', username)
-        else:
-            result = db.execute('SELECT * FROM users WHERE username=? AND password=?', (username, password))
-            self.logged_user = username
+        user = db.execute('SELECT * FROM users WHERE email=? AND password=?', (email, password)).fetchone()
+        db.close()
 
-        if result.fetchone():
+        if user:
+            self.logged_user[cherrypy.request.headers['Remote-Addr']] = user
             return open("html/confirmations/login_successful.html")
         else:
             return open("html/confirmations/login_failed.html")
@@ -139,11 +159,13 @@ class Actions(object):
 
         result = db.execute('SELECT * FROM users WHERE username=? OR email=?', (username, email))
         if result.fetchone():
+            db.close()
             return open("html/confirmations/login_failed.html")
         else:
-            db.execute('INSERT INTO users(name, username, email, password) VALUES (?, ?, ?, ?)', (name, username, email, password))
+            db.execute('INSERT INTO users(name, username, email, password, profile_pic) VALUES (?, ?, ?, ?, ?)',
+                       (name, username, email, password, 'default.jpeg'))
             db.commit()
-            self.logged_user = username
+            self.logged_user[cherrypy.request.headers['Remote-Addr']] = result.fetchone()
             db.close()
             return open("html/confirmations/login_successful.html")
 
@@ -174,23 +196,107 @@ class Actions(object):
                 f.write(d)
 
         name = my_file_name if my_file_name else fname
-        author = self.logged_user if not my_file_author else my_file_author
-        db.execute('INSERT INTO images(name, author, path) VALUES (?, ?, ?)', (name, author, filename))
+        author = self.logged_user[cherrypy.request.headers['Remote-Addr']][1] if not my_file_author else my_file_author
+        db.execute('INSERT INTO images(username, name, author, path) VALUES (?, ?, ?, ?)',
+                   (self.logged_user[cherrypy.request.headers['Remote-Addr']][2], name, author, filename))
         db.commit()
         db.close()
 
         return "Upload successful!"
 
     @cherrypy.expose
-    def load_image(self, image_name):
+    def update_settings(self, name, username, email, password, phone, country, city, bio, profile_pic):
         db = sql.connect('database.db')
-        result = db.execute('SELECT path FROM images WHERE name=?', image_name)
+
+        if username != self.logged_user[cherrypy.request.headers['Remote-Addr']][2]:
+            existing_user = db.execute('SELECT * FROM users WHERE username=?', (username,))
+            if existing_user.fetchone():
+                return "Username already exists!<br><a href='/profile'>Go back</a>"
+        if email != self.logged_user[cherrypy.request.headers['Remote-Addr']][3]:
+            existing_email = db.execute('SELECT * FROM users WHERE email=?', (email,))
+            if existing_email.fetchone():
+                return "Email already registered!<br><a href='/profile'>Go back</a>"
+        if password == "":
+            password = self.logged_user[cherrypy.request.headers['Remote-Addr']][4]
+
+        db.execute(
+            'UPDATE users SET name=?, username=?, email=?, password=?, phone=?, country=?, city=?, bio=?, profile_pic=? WHERE username=?',
+            (name, username, email, password, phone, country, city, bio, profile_pic, self.logged_user[cherrypy.request.headers['Remote-Addr']]))
+        db.commit()
         db.close()
-        return open(result.fetchone()[0])
+        self.update_logged_user(email)
+        return open("html/confirmations/settings_updated.html")
 
     @cherrypy.expose
-    def get_logged_user(self):
-        return self.logged_user
+    def get_settings(self):
+        result = self.logged_user[cherrypy.request.headers['Remote-Addr']]
+        return """<form action="actions/update_settings" method="post" style="margin-left: 10%">
+                    <p>Name:</p> <input id="settings-name" name="name" type="text" class="text" placeholder="Name" value="{}">
+                    <p>Username:</p> <input id="settings-username" name="username" type="text" class="text" placeholder="User Name" value={} required>
+                    <p>Email:</p> <input id="settings-email" name="email" type="email" class="text" placeholder="Email" value={} required>
+                    <p>Password:</p> <input id="settings-password" name="password" type="password" class="text" placeholder="Enter Password" value={} required>
+                    <p>Phone Number:</p> <input id="settings-phone" name="phone" type="text" class="text" placeholder="Phone Number" value={}>
+                    <p>Country:</p> <input id="settings-country" name="country" type="text" class="text" placeholder="Country" value={}>
+                    <p>City:</p> <input id="settings-city" name="city" type="text" class="text" placeholder="City" value={}>
+                    <p>Bio:</p> <textarea id="settings-bio" name="bio" rows="4" class="bio-text" placeholder="Bio" value={}></textarea>
+                    <button type="submit" class="submit-btn">Apply</button>
+                </form>
+        """.format(result[1], result[2], result[3], result[4], result[5], result[6], result[7], result[8])
+
+    @cherrypy.expose
+    def newcomment(self, imageid, comment_title, comment):
+        db = sql.connect('database.db')
+        user = self.logged_user[cherrypy.request.headers['Remote-Addr']][2]
+        db.execute('INSERT INTO comments(idimg, user, title, comment) VALUES (?, ?, ?, ?)', (imageid, user, comment_title, comment))
+        db.commit()
+        db.close()
+        return "Comment added!"
+
+    @cherrypy.expose
+    def upvote(self, imageid):
+        db = sql.connect('database.db')
+        current_votes = db.execute('SELECT * FROM votes WHERE idimg=? AND user=?', (imageid, self.logged_user[cherrypy.request.headers['Remote-Addr']][2])).fetchone()
+        if current_votes is None:
+            db.execute('INSERT INTO votes(idimg, user, vote) VALUES (?, ?, ?)', (imageid, self.logged_user[cherrypy.request.headers['Remote-Addr']][2], 1))
+        else:
+            if current_votes[3] == 1:
+                return "You have already upvoted this image!"
+            else:
+                db.execute('UPDATE votes SET vote = 1 WHERE idimg = ? AND user = ?', (imageid, self.logged_user[cherrypy.request.headers['Remote-Addr']][2]))
+        db.commit()
+        db.close()
+        Root().image(imageid)
+        return "Upvote added!"
+
+    @cherrypy.expose
+    def downvote(self, imageid):
+        db = sql.connect('database.db')
+        current_votes = db.execute('SELECT * FROM votes WHERE idimg=? AND user=?', (imageid, self.logged_user[cherrypy.request.headers['Remote-Addr']][2])).fetchone()
+        if current_votes is None:
+            db.execute('INSERT INTO votes(idimg, user, vote) VALUES (?, ?, ?)', (imageid, self.logged_user[cherrypy.request.headers['Remote-Addr']][2], -1))
+        else:
+            if current_votes[3] == -1:
+                return "You have already downvoted this image!"
+            else:
+                db.execute('UPDATE votes SET vote = -1 WHERE idimg = ? AND user = ?', (imageid, self.logged_user[cherrypy.request.headers['Remote-Addr']][2]))
+        db.commit()
+        db.close()
+        Root().image(imageid)
+        return "Downvote added!"
+
+    @cherrypy.expose
+    def get_votes(self, imageid):
+        db = sql.connect('database.db')
+        result = db.execute('SELECT * FROM votes WHERE idimg=?', imageid).fetchall()
+        up = 0
+        down = 0
+        for i in result:
+            if i[3] == 1:
+                up += 1
+            elif i[3] == -1:
+                down += 1
+        db.close()
+        return {'up': up, 'down': down}
 
 
 if __name__ == "__main__":

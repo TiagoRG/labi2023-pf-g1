@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, inicial-scale=1.0">
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -30,6 +31,10 @@
 				font-size: 68%;
 				font-family: 'Poppins', sans-serif;
 				scroll-behavior: smooth;
+			}
+
+			.tooltip {
+				font-size: 85%;
 			}
 
 			::-webkit-scrollbar {
@@ -61,107 +66,98 @@
 				margin: 0 auto;
 			}
 		</style>
-    <title>Image</title>
+    <title>{{IMAGE NAME}}</title>
 </head>
 <body>
     <div class="sidebar">
-			<div class="logo_content">
-				<div class="logo">
-					<i class='bx bxl-html5'></i>
-					<div class="logo_name">Dashboard</div>
-				</div>
-				<i class='bx bx-menu' id="btn"></i>
+		<div class="logo_content">
+			<div class="logo">
+				<i class='bx bx-cog' ></i>
+				<div class="logo_name">Dashboard</div>
 			</div>
-			<ul class="nav_list">
-				<li style="margin: 0 -24.7px">
-					<i class='bx bx-search' ></i>
-					<label>
-						<input type="text" placeholder="Search...">
-					</label>
-					<span class="tooltip">Search</span>
-				</li>
-				<li style="margin: 0 -24.7px">
-					<a href="/profile">
-						<i class='bx bx-user' ></i>
-						<span class="links_name">User</span>
-					</a>
-					<span class="tooltip">User</span>
-				</li>
-				<li style="margin: 0 -24.7px">
-					<a href="/upload">
-						<i class='bx bx-upload'></i>
-						<span class="links_name">Upload Photo</span>
-					</a>
-					<span class="tooltip">Upload Photo</span>
-				</li>
-				<li style="margin: 0 -24.7px">
-					<a href="/gallery">
-						<i class='bx bx-photo-album' ></i>
-						<span class="links_name">Gallery</span>
-					</a>
-					<span class="tooltip">Gallery</span>
-				</li>
-				<li style="margin: 0 -24.7px">
-					<a href="/main">
-						<i class='bx bx-chart' ></i>
-						<span class="links_name">Highlights</span>
-					</a>
-					<span class="tooltip">Highlights</span>
-				</li>
-				<li style="margin: 0 -24.7px">
-					<a href="/main">
-						<i class='bx bx-heart' ></i>
-						<span class="links_name">Favorites</span>
-					</a>
-					<span class="tooltip">Favorites</span>
-				</li>
-				<li style="margin: 0 -24.7px">
-					<a href="/profile">
-						<i class='bx bx-cog' ></i>
-						<span class="links_name">Settings</span>
-					</a>
-					<span class="tooltip">Settings</span>
-				</li>
-			</ul>
-			<div class="profile_content">
-				<div class="profile">
-					<div class="profile_details">
-						<img src="../images/Adrego.jpg" alt="">
-						<div class="name_job">
-							<div class="name">Adrego Rocha</div>
-							<div class="job">Professor</div>
-						</div>
-					</div>
-					<i class='bx bx-log-out' id="log_out"></i>
+			<i class='bx bx-menu' id="btn"></i>
+		</div>
+		<ul class="nav_list">
+			<li style="margin: 0 -24.7px">
+				<i class='bx bx-search' ></i>
+				<label>
+					<input type="text" placeholder="Search...">
+				</label>
+				<span class="tooltip">Search</span>
+			</li>
+			<li style="margin: 0 -24.7px">
+				<a href="/profile">
+					<i class='bx bx-user' ></i>
+					<span class="links_name">User</span>
+				</a>
+				<span class="tooltip">User</span>
+			</li>
+			<li style="margin: 0 -24.7px">
+				<a href="#" onclick="window.open('/upload','popup','width=750, height=750')">
+					<i class='bx bx-upload'></i>
+					<span class="links_name">Upload Photo</span>
+				</a>
+				<span class="tooltip">Upload Photo</span>
+			</li>
+			<li style="margin: 0 -24.7px">
+				<a href="/gallery">
+					<i class='bx bx-photo-album' ></i>
+					<span class="links_name">Gallery</span>
+				</a>
+				<span class="tooltip">Gallery</span>
+			</li>
+			<li style="margin: 0 -24.7px">
+				<a href="/main">
+					<i class='bx bx-chart' ></i>
+					<span class="links_name">Highlights</span>
+				</a>
+				<span class="tooltip">Highlights</span>
+			</li>
+			<li style="margin: 0 -24.7px">
+				<a href="/about">
+					<i class='bx bx-heart' ></i>
+					<span class="links_name">About</span>
+				</a>
+				<span class="tooltip">About</span>
+			</li>
+		</ul>
+		<div class="profile_content">
+			<div class="profile">
+				<div class="profile_details">
+					{{SIDEBAR PROFILE}}
 				</div>
+				<i class='bx bx-log-out' id="log_out" style="cursor: pointer" onclick="window.location.href='/actions/logout'"></i>
 			</div>
 		</div>
+	</div>
 
 	<div id="content">
 		<div id="post-box" class="row">
 			<div id="image-box" class="left-item column">
-				<h2 id="title" style="text-align: center">Image name</h2>
-				<img src="../images/image1.jpg" id="image" alt="">
+				<h2 id="title" style="text-align: center">{{IMAGE NAME}}</h2>
+				<h4>Uploaded by {{IMAGE UPLOADER}}</h4>
+				<img src="../{{PATH}}" id="image" alt="">
 				<div style="text-align: right; margin-right: 10%">
-					<a id="upvotes">0</a>
-					<img src="../images/ThumbsUp.jpg" alt="Upvote" href="#" id="upvote" class="vote_image" onclick="upvote()">
-					<a id="downvotes">0</a>
-					<img src="../images/ThumbsDown.jpg" alt="Downvote" href="#" id="downvote" class="vote_image" onclick="downvote()">
+					<a id="upvotes">{{UPVOTES}}</a>
+					<img src="../images/ThumbsUp.jpg" alt="Upvote" id="upvote" class="vote_image" onclick="upvote()">
+					<a id="downvotes">{{DOWNVOTES}}</a>
+					<img src="../images/ThumbsDown.jpg" alt="Downvote" id="downvote" class="vote_image" onclick="downvote()">
 				</div>
 			</div>
 
 			<div id="comments-box" class="right-item column">
-				<h2 style="text-align: center">Comments</h2>
+				<h2 style="top:5%; text-align: center">Comments</h2>
 				<br>
 				<div id="comments">
-
+					{{COMMENTS}}
 				</div>
 				<br>
 				<div id="comment-form" style="font-size: medium">
-					<form action="" method="post">
-						<label for="comment"></label><textarea name="comment" id="comment" cols="30" rows="2" placeholder="Write a comment..." class="text"></textarea>
-						<input type="submit" value="Comment" id="submit" onclick="newcomment()">
-					</form>
+					<label for="comment-title"></label><input type="text" id="comment-title" placeholder="Comment title" class="text" required>
+					<br>
+					<label for="comment"></label><textarea name="comment" id="comment" cols="30" rows="5" placeholder="Write a comment..." class="text" required></textarea>
+					<br>
+					<button id="submit" onclick="newcomment()">Comment</button>
 				</div>
 			</div>
 		</div>

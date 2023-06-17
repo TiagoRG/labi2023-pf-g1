@@ -1,6 +1,6 @@
 .PHONY: all clean cleanall
 
-all: ../documento.pdf
+all: documento.pdf
 
 documento.pdf: documento.tex bibliografia.bib
 	pdflatex documento.tex

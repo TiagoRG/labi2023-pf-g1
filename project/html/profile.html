@@ -31,6 +31,10 @@
 				scroll-behavior: smooth;
 			}
 
+			.tooltip {
+				font-size: 85%;
+			}
+
 			::-webkit-scrollbar {
 				width: 1.3rem;
 			}
@@ -66,7 +70,7 @@
     <div class="sidebar">
 			<div class="logo_content">
 				<div class="logo">
-					<i class='bx bxl-html5'></i>
+					<i class='bx bx-cog' ></i>
 					<div class="logo_name">Dashboard</div>
 				</div>
 				<i class='bx bx-menu' id="btn"></i>
@@ -108,30 +112,19 @@
 					<span class="tooltip">Highlights</span>
 				</li>
 				<li style="margin: 0 -24.7px">
-					<a href="/main">
+					<a href="/about">
 						<i class='bx bx-heart' ></i>
-						<span class="links_name">Favorites</span>
+						<span class="links_name">About</span>
 					</a>
-					<span class="tooltip">Favorites</span>
-				</li>
-				<li style="margin: 0 -24.7px">
-					<a href="/profile">
-						<i class='bx bx-cog' ></i>
-						<span class="links_name">Settings</span>
-					</a>
-					<span class="tooltip">Settings</span>
+					<span class="tooltip">About</span>
 				</li>
 			</ul>
 			<div class="profile_content">
 				<div class="profile">
 					<div class="profile_details">
-						<img src="../images/Adrego.jpg" alt="">
-						<div class="name_job">
-							<div class="name">Adrego Rocha</div>
-							<div class="job">Professor</div>
-						</div>
+						{{SIDEBAR PROFILE}}
 					</div>
-					<i class='bx bx-log-out' id="log_out"></i>
+					<i class='bx bx-log-out' id="log_out" style="cursor: pointer" onclick="window.location.href='/actions/logout'"></i>
 				</div>
 			</div>
 		</div>
@@ -233,13 +226,13 @@
             <h2>Edit Settings</h2>
             <a class="close" href="#">&times;</a>
             <div class="content">
-               {{SETTINGS FORM}}
+                <!-- SETTINGS FORM -->
+				{{SETTINGS FORM}}
 				<div class="edit-img">
 					<button class="edit-btn" >
 						<span class="btn-text">Change Image</span>
 					</button>
             	</div>
-
             </div>
         </div>
     </div>
@@ -249,5 +242,6 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
     <script src="../js/script.js"></script>
+	<script src="../js/settings.js"></script>
 </body>
 </html>
