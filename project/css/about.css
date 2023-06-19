@@ -47,7 +47,7 @@ h2 {
     justify-content: center;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding-bottom: 100px;
+    padding-bottom: 25px;
     scroll-behavior: smooth;
 }
 
@@ -127,18 +127,10 @@ button:hover {
     scale: 102%;
 }
 
-.students-inner-grid img {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    border-radius: 5px;
-}
-
 .students-outer-grid .students-inner-grid p {
     top: 0;
     margin: 0;
-    padding: 0;
+    padding: 10px 10px 40px;
     text-align: center;
 }
 

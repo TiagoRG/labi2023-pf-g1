@@ -93,28 +93,24 @@
         <h2 id="group">Grupo 1</h2>
         <div class="students-outer-grid">
             <div class="students-inner-grid">
-                <img src="../images/Adrego.jpg" alt="Adrego">
                 <p>Bruno Pereira<br>
                 NMec: 112726<br>
                 Email: <a href="mailto:brunoborlido@ua.pt">brunoborlido@ua.pt</a><br>
                 Github: <a href="https://github.com/brunombp">brunombp</a></p>
             </div>
             <div class="students-inner-grid">
-                <img src="../images/ThumbsUp.jpg" alt="Adrego">
                 <p>Tiago Ferreira<br>
                 NMec: 112787<br>
                 Email: <a href="mailto:taof@ua.pt">taof@ua.pt</a><br>
                 Github: <a href="https://github.com/tiagof-pk">tiagof-pk</a></p>
             </div>
             <div class="students-inner-grid">
-                <img height="512" src="../images/ThumbsDown.jpg" alt="Adrego">
                 <p>Tiago Garcia<br>
                 NMec: 114184<br>
                 Email: <a href="mailto:tiago.rgarcia@ua.pt">tiago.rgarcia@ua.pt</a><br>
                 Github: <a href="https://github.com/TiagoRG">TiagoRG</a></p>
             </div>
             <div class="students-inner-grid">
-                <img src="../images/Adrego.jpg" alt="Adrego">
                 <p>Rúben Gomes<br>
                 NMec: 113435<br>
                 Email: <a href="mailto:rlcg@ua.pt">rlcg@ua.pt</a><br>
@@ -124,7 +120,7 @@
         <hr>
         <h2 id="bibliography">Bibliografia</h2>
         <p>
-            <a href="">Reference 1</a><br>
+            <a href="https://www.youtube.com/@CodingLabYT">CodingLabYT</a><br>
         </p>
         <a href="https://www.ua.pt/"><img src="../images/uacolored.png" alt="UA" style="margin-top: 50px" width="150" height="150"></a>
     </div>
@@ -140,17 +136,25 @@
             <p>
                 Baseia-se numa aplicação de partilha de imagens. Cada utilizador poderá criar uma conta e fazer upload de imagens para a sua conta. Estas imagens poderão ser vistas por outros utilizadores.
             </p>
+            <p>
+                O site tem como base o cherrypy, cujo é responsável pela lógica/ligação entre as páginas em si. Também tem outro papel bastante importante, que é realizar a ligação de métodos post/get do servidor, e o JavaScript (JS) da página, para ser apresentado dados em tempo real na página.
+            </p>
+            <p>
+                Também é usado uma base de dados em Structured Query Language (SQL), com múltiplas tabelas. Cada uma tem a sua finalidade, como, por exemplo, guardar as credenciais de um utilizador, comentários de uma imagem, etc.
+            </p>
         </div>
         <div id="project-roadmap">
-            <h1>
+            <h1 style="margin-bottom: 50px;">
                 Roadmap do Projeto
             </h1>
-            <p>
-                Linha 1 do roadmap do projeto
-            </p>
-            <p>
-                Descrição do processo de desenvolvimento do projeto
-            </p>
+            <p style="font-size: xx-large;">O site está repartido em várias páginas, sendo estas:</p>
+            <p>&bullet; <b>index.html</b> &rightarrow; Página inicial do site, onde é possível fazer login e criar conta</p>
+            <p>&bullet; <b>upload.html</b> &rightarrow; Página onde é possível fazer upload de imagens.</p>
+            <p>&bullet; <b>image.html</b> &rightarrow; Página onde se pode ver uma imagem em específico, com os seus comentários e likes/dislikes.</p>
+            <p>&bullet; <b>profile.html</b> &rightarrow; Página onde é possível ver o perfil de um utilizador.</p>
+            <p>&bullet; <b>main.html</b> &rightarrow; Página onde é possível ver os destaques das imagens na base de dados.</p>
+            <p>&bullet; <b>gallery.html</b> &rightarrow; Página onde é possível ver as imagens que o utilizador deu like.</p>
+            <p>&bullet; <b>about.html</b> &rightarrow; Página onde é possível ver informações sobre os respetivos autores.</p>
         </div>
         <button id="popup-close-button" onclick="closePopup()"><img src="../images/close.png" alt=""></button>
         <button id="switch-description-prev" class="switch-popup" onclick="switchPopup()"><img src="../images/prev_cut.png" alt=""></button>
